@@ -1,0 +1,7 @@
+name: Jakashuinya
+version: '${version}'
+main: net.ocejlot.jakashuinya.jakashuinya.Jakashuinya
+api-version: 1.19
+commands:
+  woolbattle:
+    description: Command for woolbattle
