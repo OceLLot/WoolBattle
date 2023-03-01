@@ -4,6 +4,7 @@ package net.ocejlot.jakashuinya.jakashuinya.listeners
 import net.ocejlot.jakashuinya.jakashuinya.generatorBlockList
 import net.ocejlot.jakashuinya.jakashuinya.playerPlacedBlockList
 import net.ocejlot.jakashuinya.jakashuinya.plugin
+import net.ocejlot.jakashuinya.jakashuinya.wbDebugger
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
@@ -15,6 +16,8 @@ class AddBlockToList: Listener {
     @EventHandler
     fun onPlace(event: BlockPlaceEvent){
         val block = event.block
+        val uuid = event.player.uniqueId
+        if(wbDebugger[uuid] == true)return
 
         //Чи не поставив гравець блок на місце генератора
         if(generatorBlockList.contains(block.location)){
