@@ -2,6 +2,7 @@ package net.ocejlot.jakashuinya.jakashuinya
 
 import net.ocejlot.jakashuinya.jakashuinya.commands.WoolBattleCommand
 import net.ocejlot.jakashuinya.jakashuinya.items.SlimePlatform
+import net.ocejlot.jakashuinya.jakashuinya.items.WoolPlatform
 import net.ocejlot.jakashuinya.jakashuinya.listeners.AddBlockToList
 import net.ocejlot.jakashuinya.jakashuinya.listeners.BlockGenerator
 import net.ocejlot.jakashuinya.jakashuinya.listeners.BowDestroyBlocks
@@ -41,6 +42,7 @@ class Jakashuinya : JavaPlugin() {
         Bukkit.getPluginManager().registerEvents(SlimePlatform(), plugin)
         Bukkit.getPluginManager().registerEvents(DeathEvent(), plugin)
         Bukkit.getPluginManager().registerEvents(BowDestroyBlocks(), plugin)
+        Bukkit.getPluginManager().registerEvents(WoolPlatform(), plugin)
         //Bukkit.getPluginManager().registerEvents(ExpiredBlocksBreak(), plugin)
     }
 }
