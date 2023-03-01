@@ -1,6 +1,7 @@
 package net.ocejlot.jakashuinya.jakashuinya.commands
 
 import net.kyori.adventure.text.minimessage.MiniMessage
+import net.ocejlot.jakashuinya.jakashuinya.playerPlacedBlockList
 import net.ocejlot.jakashuinya.jakashuinya.util.ItemStorage
 import net.ocejlot.jakashuinya.jakashuinya.wbDebugger
 import org.bukkit.command.Command
@@ -18,6 +19,7 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
             sender.sendMessage(MiniMessage.miniMessage().deserialize("<red>Комманда введена неправильно!"))
             return false
         }
+
 
         //Якщо чувак ввів /woolbattle debug
         if (args[0] == "debug") {

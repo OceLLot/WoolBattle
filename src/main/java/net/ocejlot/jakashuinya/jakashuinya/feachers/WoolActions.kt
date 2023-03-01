@@ -1,6 +1,5 @@
 package net.ocejlot.jakashuinya.jakashuinya.feachers
 
-import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack

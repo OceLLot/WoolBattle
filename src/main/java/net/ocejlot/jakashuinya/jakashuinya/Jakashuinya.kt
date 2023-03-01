@@ -4,6 +4,7 @@ import net.ocejlot.jakashuinya.jakashuinya.commands.WoolBattleCommand
 import net.ocejlot.jakashuinya.jakashuinya.items.SlimePlatform
 import net.ocejlot.jakashuinya.jakashuinya.listeners.AddBlockToList
 import net.ocejlot.jakashuinya.jakashuinya.listeners.BlockGenerator
+import net.ocejlot.jakashuinya.jakashuinya.listeners.DeathEvent
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.plugin.Plugin
@@ -38,7 +39,7 @@ class Jakashuinya : JavaPlugin() {
         Bukkit.getPluginManager().registerEvents(BlockGenerator(), plugin)
         Bukkit.getPluginManager().registerEvents(AddBlockToList(), plugin)
         Bukkit.getPluginManager().registerEvents(SlimePlatform(), plugin)
+        Bukkit.getPluginManager().registerEvents(DeathEvent(), plugin)
         //Bukkit.getPluginManager().registerEvents(ExpiredBlocksBreak(), plugin)
     }
 }
-
