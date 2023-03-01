@@ -10,7 +10,9 @@ class ItemFeachers {
             for (y in location.blockY..location.blockY) {
                 for (z in location.blockZ - 1..location.blockZ + 1) {
                     val blockLocation = Location(location.world, x.toDouble(), y.toDouble(), z.toDouble())
-                    blockLocation.block.type = block
+                    if(blockLocation.block.type == Material.AIR){
+                        blockLocation.block.type = block
+                    }
                 }
             }
         }
