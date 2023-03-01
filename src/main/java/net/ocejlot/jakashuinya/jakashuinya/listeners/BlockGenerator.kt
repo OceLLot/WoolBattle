@@ -11,8 +11,6 @@ import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockBreakEvent
-import org.bukkit.inventory.ItemStack
-
 class BlockGenerator: Listener {
     
     @EventHandler
@@ -55,6 +53,7 @@ class BlockGenerator: Listener {
 
         //Встанговлення блока з затримкою на місці генераторів
         Bukkit.getScheduler().runTaskLater(plugin, Runnable {
+            playerPlacedBlockList.remove(block.location)
             block.type = type
         }, 10)
     }

@@ -36,17 +36,5 @@ class AddBlockToList: Listener {
         Bukkit.getScheduler().runTaskLater(plugin, Runnable {
             block.type = Material.AIR
         }, 20*2*60)//затримка 2 хв
-
-
-
-
-        //щось невідоме тому прибрав
-        /*val time = System.currentTimeMillis() / 10 + 12000
-        if(generatorBlockList.contains(block.location))
-        blockTimer[time] = block.location
-
-        player.sendMessage(time.toString())
-        */
-
     }
 }

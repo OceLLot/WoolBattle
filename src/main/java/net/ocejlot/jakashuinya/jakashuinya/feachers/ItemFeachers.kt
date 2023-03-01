@@ -1,5 +1,6 @@
 package net.ocejlot.jakashuinya.jakashuinya.feachers
 
+import net.ocejlot.jakashuinya.jakashuinya.playerPlacedBlockList
 import org.bukkit.Location
 import org.bukkit.Material
 
@@ -11,6 +12,7 @@ class ItemFeachers {
                 for (z in location.blockZ - 1..location.blockZ + 1) {
                     val blockLocation = Location(location.world, x.toDouble(), y.toDouble(), z.toDouble())
                     if(blockLocation.block.type == Material.AIR){
+                        playerPlacedBlockList.add(blockLocation)
                         blockLocation.block.type = block
                     }
                 }
