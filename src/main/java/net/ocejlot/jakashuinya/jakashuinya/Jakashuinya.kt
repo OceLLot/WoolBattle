@@ -29,6 +29,7 @@ class Jakashuinya : JavaPlugin() {
 
     fun registerCommands(){
         getCommand("woolbattle")!!.setExecutor(WoolBattleCommand())
+        getCommand("woolbattle")!!.tabCompleter = WoolBattleCommand()
     }
 
     fun registerEvents(){
