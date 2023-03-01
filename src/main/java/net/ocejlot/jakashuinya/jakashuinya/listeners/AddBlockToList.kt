@@ -17,6 +17,8 @@ class AddBlockToList: Listener {
     fun onPlace(event: BlockPlaceEvent){
         val block = event.block
         val uuid = event.player.uniqueId
+
+        //Якщо увімкнений дебаг мод до нічого не додає і блок не зникне
         if(wbDebugger[uuid] == true)return
 
         //Чи не поставив гравець блок на місце генератора

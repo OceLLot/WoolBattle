@@ -4,6 +4,7 @@ import net.ocejlot.jakashuinya.jakashuinya.generatorBlockList
 import net.ocejlot.jakashuinya.jakashuinya.playerPlacedBlockList
 import net.ocejlot.jakashuinya.jakashuinya.plugin
 import net.ocejlot.jakashuinya.jakashuinya.util.ItemAmount
+import net.ocejlot.jakashuinya.jakashuinya.wbDebugger
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
@@ -17,6 +18,10 @@ class BlockGenerator: Listener {
     fun breakEvent(event: BlockBreakEvent) {
         val block = event.block
         val player = event.player
+
+
+        //Якщо увімкнений дебаг мод то можна ламати генератори
+        if(wbDebugger[player.uniqueId] == true)return
 
         //Провірка на те, чи є блок в списку блоків та очистка дропів.
         val list = listOf(Material.RED_WOOL, Material.BLUE_WOOL)
