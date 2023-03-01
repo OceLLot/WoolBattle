@@ -1,6 +1,8 @@
 package net.ocejlot.jakashuinya.jakashuinya.listeners
 
 import net.ocejlot.jakashuinya.jakashuinya.generatorBlockList
+import net.ocejlot.jakashuinya.jakashuinya.playerPlacedBlockList
+import net.ocejlot.jakashuinya.jakashuinya.util.IsWool
 import net.ocejlot.jakashuinya.jakashuinya.woolState
 import org.bukkit.Material
 import org.bukkit.entity.EntityType
@@ -17,7 +19,17 @@ class BowDestroyBlocks: Listener {
         val location = block.location
 
         if(arrow.type != EntityType.ARROW)return
-        if(generatorBlockList.contains(location))return
+        if(!IsWool(block.type).get())return
+
+        //Провірка, чи не є часом цей блок поставленим гравцем.
+        if(playerPlacedBlockList.contains(location)){
+            playerPlacedBlockList.remove(location)
+            return}
+
+        //Провірка, чи не є часом цей блок - вперше зломаним блоком генератора
+        if(!generatorBlockList.contains(location)){
+            generatorBlockList.add(location)
+        }
 
         if(!woolState.contains(location)){
             woolState[location] = true
