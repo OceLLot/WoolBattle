@@ -14,7 +14,7 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         if (sender !is Player) return false
         if (!sender.hasPermission("woolbattle.debug")) return false
-        if (args.isEmpty() || args.size < 2 || args[0].toIntOrNull() == null || args[1].toIntOrNull() == null) {
+        if (args.isEmpty()) {
             sender.sendMessage(MiniMessage.miniMessage().deserialize("<red>Комманда введена неправильно!"))
             return false
         }
@@ -24,7 +24,9 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
             //Встановлює значення дебагмоду на протилежне
             val uuid = sender.uniqueId
             val mode = wbDebugger.putIfAbsent(uuid, false)
-            if (mode != null) {
+            if (mode == null) {
+                sender.sendMessage("Ви встановили дебаг мод на false")
+            } else {
                 wbDebugger[uuid] = !mode
                 sender.sendMessage("Ви встановили дебаг мод на ${!mode}")
             }
@@ -32,6 +34,10 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
 
         //Якщо чувак ввів /woolbattle item
         }else if (args[0] == "item"){
+            if(args.size < 2){
+                sender.sendMessage(MiniMessage.miniMessage().deserialize("<red>Не вистачає аргумента!"))
+                return false
+            }
             val inventory = sender.inventory
 
             //Якщо чувак ввів /woolbattle item shears

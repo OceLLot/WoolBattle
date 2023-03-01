@@ -15,7 +15,7 @@ object ItemStorage {
 
     val shears = ItemStack(Material.SHEARS).apply {
         itemMeta = itemMeta.also { its ->
-            its.displayName(MiniMessage.miniMessage().deserialize("<purple>Чарівні ножиці"))
+            its.displayName(MiniMessage.miniMessage().deserialize("<yellow>Чарівні ножиці"))
             its.isUnbreakable = true
             its.addEnchant(Enchantment.DIG_SPEED, 10, true)
         }
