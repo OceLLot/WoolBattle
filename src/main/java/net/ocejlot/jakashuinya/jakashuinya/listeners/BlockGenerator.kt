@@ -1,5 +1,6 @@
 package net.ocejlot.jakashuinya.jakashuinya.listeners
 
+import net.ocejlot.jakashuinya.jakashuinya.feachers.WoolActions
 import net.ocejlot.jakashuinya.jakashuinya.generatorBlockList
 import net.ocejlot.jakashuinya.jakashuinya.playerPlacedBlockList
 import net.ocejlot.jakashuinya.jakashuinya.plugin
@@ -35,7 +36,7 @@ class BlockGenerator: Listener {
         val itemAmount = ItemAmount.getPlayerItemCount(player, Material.RED_WOOL)
         val stackCount = 3
         if (itemAmount <= (64* stackCount)-1) {
-            player.inventory.addItem(ItemStack(Material.RED_WOOL))
+            WoolActions(player).addAmount(1)
         }
 
 
