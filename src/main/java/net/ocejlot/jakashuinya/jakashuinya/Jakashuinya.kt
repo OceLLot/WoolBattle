@@ -1,6 +1,5 @@
 package net.ocejlot.jakashuinya.jakashuinya
 
-import net.ocejlot.jakashuinya.jakashuinya.MapManager.ExpiredBlocksBreak
 import net.ocejlot.jakashuinya.jakashuinya.commands.WoolBattleCommand
 import net.ocejlot.jakashuinya.jakashuinya.listeners.AddBlockToList
 import net.ocejlot.jakashuinya.jakashuinya.listeners.BlockGenerator
@@ -36,7 +35,7 @@ class Jakashuinya : JavaPlugin() {
         Bukkit.getPluginManager().registerEvents(AddBlockToList(), plugin)
         Bukkit.getPluginManager().registerEvents(BlockGenerator(), plugin)
         Bukkit.getPluginManager().registerEvents(AddBlockToList(), plugin)
-        Bukkit.getPluginManager().registerEvents(ExpiredBlocksBreak(), plugin)
+        //Bukkit.getPluginManager().registerEvents(ExpiredBlocksBreak(), plugin)
     }
 }
 
