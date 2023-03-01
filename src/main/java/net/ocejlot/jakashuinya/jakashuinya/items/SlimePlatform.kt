@@ -4,7 +4,6 @@ import net.ocejlot.jakashuinya.jakashuinya.feachers.ItemFeachers
 import net.ocejlot.jakashuinya.jakashuinya.feachers.WoolActions
 import net.ocejlot.jakashuinya.jakashuinya.util.ItemAmount
 import net.ocejlot.jakashuinya.jakashuinya.util.ItemStorage
-import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener

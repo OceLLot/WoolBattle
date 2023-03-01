@@ -4,6 +4,7 @@ import net.ocejlot.jakashuinya.jakashuinya.feachers.WoolActions
 import net.ocejlot.jakashuinya.jakashuinya.generatorBlockList
 import net.ocejlot.jakashuinya.jakashuinya.playerPlacedBlockList
 import net.ocejlot.jakashuinya.jakashuinya.plugin
+import net.ocejlot.jakashuinya.jakashuinya.util.IsWool
 import net.ocejlot.jakashuinya.jakashuinya.util.ItemAmount
 import net.ocejlot.jakashuinya.jakashuinya.wbDebugger
 import org.bukkit.Bukkit
@@ -11,6 +12,8 @@ import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockBreakEvent
+import org.bukkit.inventory.ItemStack
+
 class BlockGenerator: Listener {
     
     @EventHandler
@@ -23,17 +26,14 @@ class BlockGenerator: Listener {
         if(wbDebugger[player.uniqueId] == true)return
 
         //Провірка на те, чи є блок в списку блоків та очистка дропів.
-        val list = listOf(Material.RED_WOOL, Material.BLUE_WOOL)
-        if (list.contains(block.type)) {
-            event.isDropItems = false
-        }
+        if (IsWool(block.type).get())event.isDropItems = false
         else return
 
 
         //Провірка, чи досягнув гравець ліміту блоків
-        val itemAmount = ItemAmount.getPlayerItemCount(player, Material.RED_WOOL)
+        val itemAmount = ItemAmount.getPlayerItemCount(player, block.type)
         val stackCount = 3
-        if (itemAmount <= (64* stackCount)-1) {
+        if (itemAmount < (64*stackCount)) {
             WoolActions(player).addAmount(1)
         }
 
@@ -53,7 +53,6 @@ class BlockGenerator: Listener {
 
         //Встанговлення блока з затримкою на місці генераторів
         Bukkit.getScheduler().runTaskLater(plugin, Runnable {
-            playerPlacedBlockList.remove(block.location)
             block.type = type
         }, 10)
     }

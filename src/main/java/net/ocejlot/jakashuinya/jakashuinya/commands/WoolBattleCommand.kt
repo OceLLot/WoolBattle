@@ -1,7 +1,6 @@
 package net.ocejlot.jakashuinya.jakashuinya.commands
 
 import net.kyori.adventure.text.minimessage.MiniMessage
-import net.ocejlot.jakashuinya.jakashuinya.playerPlacedBlockList
 import net.ocejlot.jakashuinya.jakashuinya.util.ItemStorage
 import net.ocejlot.jakashuinya.jakashuinya.wbDebugger
 import org.bukkit.command.Command
@@ -9,7 +8,6 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
 import org.bukkit.entity.Player
-import org.bukkit.inventory.ItemStack
 
 class WoolBattleCommand: CommandExecutor, TabCompleter {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
@@ -52,16 +50,20 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
                 inventory.addItem(ItemStorage.slimePlatformItem)
             }
 
+            if(args[1] == "bow"){
+                inventory.addItem(ItemStorage.knockbackBow)
+            }
+
         }
     return false}
 
-    override fun onTabComplete(sender: CommandSender, command: Command, label: String, args: Array<out String>): MutableList<String>? {
+    override fun onTabComplete(sender: CommandSender, command: Command, label: String, args: Array<out String>): MutableList<String> {
         if(args.size == 1){
             return mutableListOf("debug", "item")
         }
 
         if(args.size == 2){
-            return mutableListOf("shears", "slime")
+            return mutableListOf("shears", "slime", "bow")
         }
 
     return mutableListOf()

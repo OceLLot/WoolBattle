@@ -17,6 +17,15 @@ object ItemStorage {
             its.displayName(MiniMessage.miniMessage().deserialize("<reset><yellow>Чарівні ножиці"))
             its.isUnbreakable = true
             its.addEnchant(Enchantment.DIG_SPEED, 10, true)
+            its.addEnchant(Enchantment.KNOCKBACK, 5, true)
+        }
+    }
+
+    val knockbackBow = ItemStack(Material.BOW).apply {
+        itemMeta = itemMeta.also { its ->
+            its.displayName(MiniMessage.miniMessage().deserialize("<reset><blue>Чарівний лук"))
+            its.isUnbreakable = true
+            its.addEnchant(Enchantment.ARROW_KNOCKBACK, 5, true)
         }
     }
 }

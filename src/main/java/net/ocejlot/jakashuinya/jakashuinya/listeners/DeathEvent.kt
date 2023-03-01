@@ -9,6 +9,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent
 
 class DeathEvent: Listener {
+
     @EventHandler
     fun onDeath(event: PlayerDeathEvent) {
         Bukkit.getScheduler().runTask(plugin, Runnable {

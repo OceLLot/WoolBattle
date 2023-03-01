@@ -5,7 +5,7 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
 class WoolActions(
-        private val player: Player
+        player: Player
 ){
     private val inventory = player.inventory
 

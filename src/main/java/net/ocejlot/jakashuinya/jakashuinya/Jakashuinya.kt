@@ -4,6 +4,7 @@ import net.ocejlot.jakashuinya.jakashuinya.commands.WoolBattleCommand
 import net.ocejlot.jakashuinya.jakashuinya.items.SlimePlatform
 import net.ocejlot.jakashuinya.jakashuinya.listeners.AddBlockToList
 import net.ocejlot.jakashuinya.jakashuinya.listeners.BlockGenerator
+import net.ocejlot.jakashuinya.jakashuinya.listeners.BowDestroyBlocks
 import net.ocejlot.jakashuinya.jakashuinya.listeners.DeathEvent
 import org.bukkit.Bukkit
 import org.bukkit.Location
@@ -13,7 +14,6 @@ import java.util.*
 
 lateinit var plugin : Plugin
 var wbDebugger = hashMapOf<UUID, Boolean>()
-var blockTimer = hashMapOf<Long, Location>()
 var playerPlacedBlockList = mutableListOf<Location>()
 var generatorBlockList = mutableListOf<Location>()
 
@@ -29,17 +29,18 @@ class Jakashuinya : JavaPlugin() {
         logger.warning("FUCK! Everything is fucked up")
     }
 
-    fun registerCommands(){
+    private fun registerCommands(){
         getCommand("woolbattle")!!.setExecutor(WoolBattleCommand())
         getCommand("woolbattle")!!.tabCompleter = WoolBattleCommand()
     }
 
-    fun registerEvents(){
+    private fun registerEvents(){
         Bukkit.getPluginManager().registerEvents(AddBlockToList(), plugin)
         Bukkit.getPluginManager().registerEvents(BlockGenerator(), plugin)
         Bukkit.getPluginManager().registerEvents(AddBlockToList(), plugin)
         Bukkit.getPluginManager().registerEvents(SlimePlatform(), plugin)
         Bukkit.getPluginManager().registerEvents(DeathEvent(), plugin)
+        Bukkit.getPluginManager().registerEvents(BowDestroyBlocks(), plugin)
         //Bukkit.getPluginManager().registerEvents(ExpiredBlocksBreak(), plugin)
     }
 }

@@ -8,7 +8,7 @@ object ItemAmount {
         var count = 0
         val inventory = player.inventory
         for (item in inventory) {
-            if (item != null && item.type == material) {
+            if (item != null && IsWool(item.type).get()) {
                 count += item.amount
             }
         }
