@@ -20,7 +20,7 @@ class WoolPlatform : Listener{
         val amount = 16
 
         if(event.hand != EquipmentSlot.HAND)return
-        if(item != ItemStorage.slimePlatformItem)return
+        if(item != ItemStorage.woolRoundPlatformItem)return
         if(event.action == Action.LEFT_CLICK_AIR || event.action == Action.LEFT_CLICK_BLOCK)return
         if(ItemAmount.getPlayerItemCount(player, Material.RED_WOOL) < amount)return
 

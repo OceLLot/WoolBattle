@@ -17,6 +17,7 @@ lateinit var plugin : Plugin
 var wbDebugger = hashMapOf<UUID, Boolean>()
 var playerPlacedBlockList = mutableListOf<Location>()
 var generatorBlockList = mutableListOf<Location>()
+var woolState = hashMapOf<Location, Boolean>()
 
 class Jakashuinya : JavaPlugin() {
     override fun onEnable() {

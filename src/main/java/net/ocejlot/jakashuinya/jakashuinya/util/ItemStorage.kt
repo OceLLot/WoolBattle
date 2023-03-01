@@ -8,13 +8,19 @@ import org.bukkit.inventory.ItemStack
 object ItemStorage {
     val slimePlatformItem = ItemStack(Material.SLIME_BALL).apply {
         itemMeta = itemMeta.also { its ->
-            its.displayName(MiniMessage.miniMessage().deserialize("<reset><green>Слайм-платформа"))
+            its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><green>Слайм-платформа"))
+        }
+    }
+
+    val woolRoundPlatformItem = ItemStack(Material.BLAZE_ROD).apply {
+        itemMeta = itemMeta.also { its ->
+            its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><red>Вовнова-платформа"))
         }
     }
 
     val shears = ItemStack(Material.SHEARS).apply {
         itemMeta = itemMeta.also { its ->
-            its.displayName(MiniMessage.miniMessage().deserialize("<reset><yellow>Чарівні ножиці"))
+            its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><yellow>Чарівні ножиці"))
             its.isUnbreakable = true
             its.addEnchant(Enchantment.DIG_SPEED, 10, true)
             its.addEnchant(Enchantment.KNOCKBACK, 5, true)
@@ -23,7 +29,7 @@ object ItemStorage {
 
     val knockbackBow = ItemStack(Material.BOW).apply {
         itemMeta = itemMeta.also { its ->
-            its.displayName(MiniMessage.miniMessage().deserialize("<reset><blue>Чарівний лук"))
+            its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><blue>Чарівний лук"))
             its.isUnbreakable = true
             its.addEnchant(Enchantment.ARROW_KNOCKBACK, 5, true)
         }

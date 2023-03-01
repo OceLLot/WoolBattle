@@ -1,6 +1,8 @@
 package net.ocejlot.jakashuinya.jakashuinya.listeners
 
-import net.ocejlot.jakashuinya.jakashuinya.feachers.ItemFeachers
+import net.ocejlot.jakashuinya.jakashuinya.generatorBlockList
+import net.ocejlot.jakashuinya.jakashuinya.woolState
+import org.bukkit.Material
 import org.bukkit.entity.EntityType
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -15,8 +17,14 @@ class BowDestroyBlocks: Listener {
         val location = block.location
 
         if(arrow.type != EntityType.ARROW)return
+        if(generatorBlockList.contains(location))return
 
-        ItemFeachers().replaceBlocksWithAir(location)
+        if(!woolState.contains(location)){
+            woolState[location] = true
+        }else{
+            woolState.remove(location)
+            block.type = Material.AIR
+        }
         arrow.remove()
     }
 }

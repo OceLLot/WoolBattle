@@ -54,6 +54,10 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
                 inventory.addItem(ItemStorage.knockbackBow)
             }
 
+            if(args[1] == "rod"){
+                inventory.addItem(ItemStorage.woolRoundPlatformItem)
+            }
+
         }
     return false}
 
@@ -63,7 +67,7 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
         }
 
         if(args.size == 2){
-            return mutableListOf("shears", "slime", "bow")
+            return mutableListOf("shears", "slime", "bow", "rod")
         }
 
     return mutableListOf()
