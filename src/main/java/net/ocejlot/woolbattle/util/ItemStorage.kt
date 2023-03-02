@@ -1,4 +1,4 @@
-package net.ocejlot.jakashuinya.jakashuinya.util
+package net.ocejlot.woolbattle.util
 
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.Material
@@ -17,13 +17,17 @@ object ItemStorage {
             its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><red>Вовнова-платформа"))
         }
     }
-
+    val woolCapsuleItem = ItemStack(Material.WHITE_WOOL).apply {
+        itemMeta = itemMeta.also { its ->
+            its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><blue>Капсула з вовни"))
+        }
+    }
     val shears = ItemStack(Material.SHEARS).apply {
         itemMeta = itemMeta.also { its ->
             its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><yellow>Чарівні ножиці"))
             its.isUnbreakable = true
             its.addEnchant(Enchantment.DIG_SPEED, 10, true)
-            its.addEnchant(Enchantment.KNOCKBACK, 5, true)
+            its.addEnchant(Enchantment.KNOCKBACK, 3, true)
         }
     }
 
@@ -32,6 +36,7 @@ object ItemStorage {
             its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><blue>Чарівний лук"))
             its.isUnbreakable = true
             its.addEnchant(Enchantment.ARROW_KNOCKBACK, 5, true)
+            its.addEnchant(Enchantment.KNOCKBACK, 3, true)
         }
     }
 }

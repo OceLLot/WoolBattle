@@ -1,9 +1,9 @@
-package net.ocejlot.jakashuinya.jakashuinya.listeners
+package net.ocejlot.woolbattle.listeners
 
-import net.ocejlot.jakashuinya.jakashuinya.generatorBlockList
-import net.ocejlot.jakashuinya.jakashuinya.playerPlacedBlockList
-import net.ocejlot.jakashuinya.jakashuinya.util.IsWool
-import net.ocejlot.jakashuinya.jakashuinya.woolState
+import net.ocejlot.woolbattle.generatorBlockList
+import net.ocejlot.woolbattle.playerPlacedBlockList
+import net.ocejlot.woolbattle.util.IsWool
+import net.ocejlot.woolbattle.woolState
 import org.bukkit.Material
 import org.bukkit.entity.EntityType
 import org.bukkit.event.EventHandler
@@ -17,6 +17,7 @@ class BowDestroyBlocks: Listener {
         val arrow = event.entity
         val block = event.hitBlock ?: return //Якщо null - return
         val location = block.location
+        arrow.remove()
 
         if(arrow.type != EntityType.ARROW)return
         if(!IsWool(block.type).get())return
@@ -37,6 +38,5 @@ class BowDestroyBlocks: Listener {
             woolState.remove(location)
             block.type = Material.AIR
         }
-        arrow.remove()
     }
 }

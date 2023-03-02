@@ -1,11 +1,13 @@
-package net.ocejlot.jakashuinya.jakashuinya.feachers
+package net.ocejlot.woolbattle.feachers
 
-import net.ocejlot.jakashuinya.jakashuinya.playerPlacedBlockList
-import net.ocejlot.jakashuinya.jakashuinya.util.IsWool
+import net.ocejlot.woolbattle.capsuleBlockList
+import net.ocejlot.woolbattle.playerPlacedBlockList
+import net.ocejlot.woolbattle.plugin
+import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
 
-class ItemFeachers {
+class ItemFeatures {
 
     fun spawnPlatform(location: Location, block: Material){
         for (x in location.blockX - 1..location.blockX + 1) {
@@ -35,4 +37,27 @@ class ItemFeachers {
             }
         }
     }
+
+    fun spawnWoolCapsule(location: Location, block: Material) {
+        capsuleBlockList.add(location.add(-1.0, 0.0, 0.0))
+        capsuleBlockList.add(location.add(1.0, 0.0, 0.0))
+        capsuleBlockList.add(location.add(0.0, 0.0, -1.0))
+        capsuleBlockList.add(location.add(0.0, 0.0, 1.0))
+        capsuleBlockList.add(location.add(-1.0, 1.0, 0.0))
+        capsuleBlockList.add(location.add(1.0, 1.0, 0.0))
+        capsuleBlockList.add(location.add(0.0, 1.0, -1.0))
+        capsuleBlockList.add(location.add(0.0, 1.0, 1.0))
+        capsuleBlockList.add(location.subtract(0.0, 1.0, 0.0))
+        capsuleBlockList.add(location.add(0.0, 2.0, 0.0))
+
+        Bukkit.getScheduler().runTask(plugin, Runnable {
+            capsuleBlockList.toList().forEach {
+                playerPlacedBlockList.add(it.block.location)
+                it.block.type = block
+            }
+        })
+    }
 }
+
+
+

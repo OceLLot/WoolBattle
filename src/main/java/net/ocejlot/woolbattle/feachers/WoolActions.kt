@@ -1,4 +1,4 @@
-package net.ocejlot.jakashuinya.jakashuinya.feachers
+package net.ocejlot.woolbattle.feachers
 
 import org.bukkit.Material
 import org.bukkit.entity.Player

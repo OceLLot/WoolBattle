@@ -1,18 +1,16 @@
-package net.ocejlot.jakashuinya.jakashuinya.listeners
+package net.ocejlot.woolbattle.listeners
 
-import net.ocejlot.jakashuinya.jakashuinya.feachers.WoolActions
-import net.ocejlot.jakashuinya.jakashuinya.generatorBlockList
-import net.ocejlot.jakashuinya.jakashuinya.playerPlacedBlockList
-import net.ocejlot.jakashuinya.jakashuinya.plugin
-import net.ocejlot.jakashuinya.jakashuinya.util.IsWool
-import net.ocejlot.jakashuinya.jakashuinya.util.ItemAmount
-import net.ocejlot.jakashuinya.jakashuinya.wbDebugger
+import net.ocejlot.woolbattle.feachers.WoolActions
+import net.ocejlot.woolbattle.generatorBlockList
+import net.ocejlot.woolbattle.playerPlacedBlockList
+import net.ocejlot.woolbattle.plugin
+import net.ocejlot.woolbattle.util.IsWool
+import net.ocejlot.woolbattle.util.ItemAmount
+import net.ocejlot.woolbattle.wbDebugger
 import org.bukkit.Bukkit
-import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockBreakEvent
-import org.bukkit.inventory.ItemStack
 
 class BlockGenerator: Listener {
     

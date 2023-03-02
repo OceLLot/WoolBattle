@@ -1,8 +1,8 @@
-package net.ocejlot.jakashuinya.jakashuinya.commands
+package net.ocejlot.woolbattle.commands
 
 import net.kyori.adventure.text.minimessage.MiniMessage
-import net.ocejlot.jakashuinya.jakashuinya.util.ItemStorage
-import net.ocejlot.jakashuinya.jakashuinya.wbDebugger
+import net.ocejlot.woolbattle.util.ItemStorage
+import net.ocejlot.woolbattle.wbDebugger
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -53,9 +53,11 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
             if(args[1] == "bow"){
                 inventory.addItem(ItemStorage.knockbackBow)
             }
-
-            if(args[1] == "rod"){
+            if(args[1] == "wool_platform"){
                 inventory.addItem(ItemStorage.woolRoundPlatformItem)
+            }
+            if(args[1] == "capsule"){
+                inventory.addItem(ItemStorage.woolCapsuleItem)
             }
 
         }
@@ -67,7 +69,7 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
         }
 
         if(args.size == 2){
-            return mutableListOf("shears", "slime", "bow", "rod")
+            return mutableListOf("shears", "slime", "bow", "wool_platform", "capsule")
         }
 
     return mutableListOf()

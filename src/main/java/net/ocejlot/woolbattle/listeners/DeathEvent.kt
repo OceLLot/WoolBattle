@@ -1,7 +1,7 @@
-package net.ocejlot.jakashuinya.jakashuinya.listeners
+package net.ocejlot.woolbattle.listeners
 
-import net.ocejlot.jakashuinya.jakashuinya.playerPlacedBlockList
-import net.ocejlot.jakashuinya.jakashuinya.plugin
+import net.ocejlot.woolbattle.playerPlacedBlockList
+import net.ocejlot.woolbattle.plugin
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.event.EventHandler

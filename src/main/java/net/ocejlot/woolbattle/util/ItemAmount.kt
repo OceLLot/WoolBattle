@@ -1,4 +1,4 @@
-package net.ocejlot.jakashuinya.jakashuinya.util
+package net.ocejlot.woolbattle.util
 
 import org.bukkit.Material
 import org.bukkit.entity.Player

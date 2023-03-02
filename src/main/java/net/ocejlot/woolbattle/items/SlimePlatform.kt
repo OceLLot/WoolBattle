@@ -1,9 +1,8 @@
-package net.ocejlot.jakashuinya.jakashuinya.items
-
-import net.ocejlot.jakashuinya.jakashuinya.feachers.ItemFeachers
-import net.ocejlot.jakashuinya.jakashuinya.feachers.WoolActions
-import net.ocejlot.jakashuinya.jakashuinya.util.ItemAmount
-import net.ocejlot.jakashuinya.jakashuinya.util.ItemStorage
+package net.ocejlot.woolbattle.items
+import net.ocejlot.woolbattle.feachers.ItemFeatures
+import net.ocejlot.woolbattle.feachers.WoolActions
+import net.ocejlot.woolbattle.util.ItemAmount
+import net.ocejlot.woolbattle.util.ItemStorage
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -25,7 +24,7 @@ class SlimePlatform : Listener{
         if(ItemAmount.getPlayerItemCount(player, Material.RED_WOOL) < amount)return
 
         val location = player.location.add(0.0, -6.0, 0.0)
-        ItemFeachers().spawnPlatform(location, Material.SLIME_BLOCK)
+        ItemFeatures().spawnPlatform(location, Material.SLIME_BLOCK)
         WoolActions(player).reduceAmount(16)
     }
 }

@@ -4,7 +4,7 @@ plugins {
     id("xyz.jpenilla.run-paper") version "2.0.1"
 }
 
-group = 'net.ocejlot.jakashuinya'
+group = 'net.ocejlot.woolbattle'
 version = '0.1-SNAPSHOT'
 
 repositories {
