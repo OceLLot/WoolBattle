@@ -1,15 +1,16 @@
-package net.ocejlot.jakashuinya.jakashuinya.listeners
+package net.ocejlot.woolbattle.listeners
 
-import net.ocejlot.jakashuinya.jakashuinya.generatorBlockList
-import net.ocejlot.jakashuinya.jakashuinya.playerPlacedBlockList
-import net.ocejlot.jakashuinya.jakashuinya.plugin
-import net.ocejlot.jakashuinya.jakashuinya.util.ItemAmount
+import net.ocejlot.woolbattle.feachers.WoolActions
+import net.ocejlot.woolbattle.generatorBlockList
+import net.ocejlot.woolbattle.playerPlacedBlockList
+import net.ocejlot.woolbattle.plugin
+import net.ocejlot.woolbattle.util.IsWool
+import net.ocejlot.woolbattle.util.ItemAmount
+import net.ocejlot.woolbattle.wbDebugger
 import org.bukkit.Bukkit
-import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockBreakEvent
-import org.bukkit.inventory.ItemStack
 
 class BlockGenerator: Listener {
     
@@ -18,19 +19,20 @@ class BlockGenerator: Listener {
         val block = event.block
         val player = event.player
 
+
+        //Якщо увімкнений дебаг мод то можна ламати генератори
+        if(wbDebugger[player.uniqueId] == true)return
+
         //Провірка на те, чи є блок в списку блоків та очистка дропів.
-        val list = listOf(Material.RED_WOOL, Material.BLUE_WOOL)
-        if (list.contains(block.type)) {
-            event.isDropItems = false
-        }
+        if (IsWool(block.type).get())event.isDropItems = false
         else return
 
 
         //Провірка, чи досягнув гравець ліміту блоків
-        val itemAmount = ItemAmount.getPlayerItemCount(player, Material.RED_WOOL)
+        val itemAmount = ItemAmount.getPlayerItemCount(player, block.type)
         val stackCount = 3
-        if (itemAmount <= (64* stackCount)-1) {
-            player.inventory.addItem(ItemStack(Material.RED_WOOL))
+        if (itemAmount < (64*stackCount)) {
+            WoolActions(player).addAmount(1)
         }
 
 

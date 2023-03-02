@@ -4,7 +4,7 @@ plugins {
     id("xyz.jpenilla.run-paper") version "2.0.1"
 }
 
-group = 'net.ocejlot.jakashuinya'
+group = 'net.ocejlot.woolbattle'
 version = '0.1-SNAPSHOT'
 
 repositories {
@@ -21,7 +21,6 @@ repositories {
 
 dependencies {
     compileOnly 'io.papermc.paper:paper-api:1.19.3-R0.1-SNAPSHOT'
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.6.20'
 }
 
 compileKotlin {

@@ -1,6 +1,6 @@
-name: Jakashuinya
+name: WoolBattle
 version: '${version}'
-main: net.ocejlot.jakashuinya.jakashuinya.Jakashuinya
+main: net.ocejlot.woolbattle.MainWoolBattle
 api-version: 1.19
 commands:
   woolbattle:

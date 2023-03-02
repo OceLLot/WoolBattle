@@ -1,4 +1,4 @@
-package net.ocejlot.jakashuinya.jakashuinya.util
+package net.ocejlot.woolbattle.util
 
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -8,7 +8,7 @@ object ItemAmount {
         var count = 0
         val inventory = player.inventory
         for (item in inventory) {
-            if (item != null && item.type == material) {
+            if (item != null && IsWool(item.type).get()) {
                 count += item.amount
             }
         }
