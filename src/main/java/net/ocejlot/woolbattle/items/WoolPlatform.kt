@@ -24,7 +24,7 @@ class WoolPlatform : Listener{
         if(event.action == Action.LEFT_CLICK_AIR || event.action == Action.LEFT_CLICK_BLOCK)return
         if(ItemAmount.getPlayerItemCount(player, Material.RED_WOOL) < amount)return
 
-        val location = player.location.add(0.0, -6.0, 0.0)
+        val location = player.location.add(0.0, -3.0, 0.0)
         ItemFeatures().spawnRoundPlatform(location, Material.WHITE_WOOL)
         WoolActions(player).reduceAmount(16)
     }

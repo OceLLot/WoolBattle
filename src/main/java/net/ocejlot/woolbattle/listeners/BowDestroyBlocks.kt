@@ -5,6 +5,7 @@ import net.ocejlot.woolbattle.playerPlacedBlockList
 import net.ocejlot.woolbattle.util.IsWool
 import net.ocejlot.woolbattle.woolState
 import org.bukkit.Material
+import org.bukkit.entity.Arrow
 import org.bukkit.entity.EntityType
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -14,29 +15,32 @@ class BowDestroyBlocks: Listener {
 
     @EventHandler
     fun onArrowHitWool(event: ProjectileHitEvent){
-        val arrow = event.entity
-        val block = event.hitBlock ?: return //Якщо null - return
-        val location = block.location
-        arrow.remove()
+        if (event.entity is Arrow) {
+            val arrow = event.entity as Arrow
 
-        if(arrow.type != EntityType.ARROW)return
-        if(!IsWool(block.type).get())return
+            val block = event.hitBlock ?: return //Якщо null - return
+            val location = block.location
+            arrow.remove()
 
-        //Провірка, чи не є часом цей блок поставленим гравцем.
-        if(playerPlacedBlockList.contains(location)){
-            playerPlacedBlockList.remove(location)
-            return}
+            if(arrow.type != EntityType.ARROW)return
+            if(!IsWool(block.type).get())return
 
-        //Провірка, чи не є часом цей блок - вперше зломаним блоком генератора
-        if(!generatorBlockList.contains(location)){
-            generatorBlockList.add(location)
-        }
+            //Провірка, чи не є часом цей блок поставленим гравцем.
+            if(playerPlacedBlockList.contains(location)){
+                playerPlacedBlockList.remove(location)
+                return}
 
-        if(!woolState.contains(location)){
-            woolState[location] = true
-        }else{
-            woolState.remove(location)
-            block.type = Material.AIR
+            //Провірка, чи не є часом цей блок - вперше зломаним блоком генератора
+            if(!generatorBlockList.contains(location)){
+                generatorBlockList.add(location)
+            }
+
+            if(!woolState.contains(location)){
+                woolState[location] = true
+            }else{
+                woolState.remove(location)
+                block.type = Material.AIR
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ import net.ocejlot.woolbattle.feachers.ItemFeatures
 import net.ocejlot.woolbattle.feachers.WoolActions
 import net.ocejlot.woolbattle.util.ItemAmount
 import net.ocejlot.woolbattle.util.ItemStorage
+import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -25,6 +26,12 @@ class WoolCapsule : Listener {
         if(ItemAmount.getPlayerItemCount(player, Material.RED_WOOL) < amount)return
 
         val location = player.location
+
+
+        val roundedLocation = Location(player.world, player.location.blockX.toDouble() + 0.5, player.location.blockY.toDouble() + 0.5, player.location.blockZ.toDouble() + 0.5, player.location.yaw, player.location.pitch)
+        player.teleport(roundedLocation)
+
+
         ItemFeatures().spawnWoolCapsule(location, Material.RED_WOOL)
         WoolActions(player).reduceAmount(16)
     }

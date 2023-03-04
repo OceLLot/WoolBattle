@@ -59,7 +59,6 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
             if(args[1] == "capsule"){
                 inventory.addItem(ItemStorage.woolCapsuleItem)
             }
-
         }
     return false}
 
