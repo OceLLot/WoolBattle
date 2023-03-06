@@ -2,6 +2,7 @@ package net.ocejlot.woolbattle
 
 import ThrowEnderPearlListener
 import net.ocejlot.woolbattle.commands.WoolBattleCommand
+import net.ocejlot.woolbattle.feachers.ItemFeatures
 import net.ocejlot.woolbattle.items.SlimePlatform
 import net.ocejlot.woolbattle.items.WoolCapsule
 import net.ocejlot.woolbattle.items.WoolPlatform
@@ -17,6 +18,7 @@ var wbDebugger = hashMapOf<UUID, Boolean>()
 var playerPlacedBlockList = mutableListOf<Location>()
 var generatorBlockList = mutableListOf<Location>()
 var woolState = hashMapOf<Location, Boolean>()
+var slimeBlocks = mutableListOf<Location>()
 
 
 
@@ -48,7 +50,9 @@ class MainWoolBattle : JavaPlugin() {
         Bukkit.getPluginManager().registerEvents(WoolPlatform(), plugin)
         Bukkit.getPluginManager().registerEvents(WoolCapsule(), plugin)
         Bukkit.getPluginManager().registerEvents(ThrowEnderPearlListener(), plugin)
-        Bukkit.getPluginManager().registerEvents(ShootArrowListener(), plugin)
+        Bukkit.getPluginManager().registerEvents(ShootBowListener(), plugin)
+        Bukkit.getPluginManager().registerEvents(ShootCrossbowListener(), plugin)
+        Bukkit.getPluginManager().registerEvents(StepOnJumpPlatform(), plugin)
 
     }
 }

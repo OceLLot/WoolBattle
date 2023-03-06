@@ -8,11 +8,11 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityShootBowEvent
 
-class ShootArrowListener : Listener {
+class ShootBowListener : Listener {
     @EventHandler
-    fun OnArrowShoot(event: EntityShootBowEvent) {
+    fun onBowShot(event: EntityShootBowEvent) {
         val player = event.entity
-        if(player !is Player)return
+        if (player !is Player || event.bow?.type != Material.BOW)return
 
         val amount = 2
         if (ItemAmount.getPlayerItemCount(player, Material.RED_WOOL) < amount) {
@@ -21,6 +21,5 @@ class ShootArrowListener : Listener {
         }else{
             WoolActions(player).reduceAmount(amount)
         }
-
     }
 }

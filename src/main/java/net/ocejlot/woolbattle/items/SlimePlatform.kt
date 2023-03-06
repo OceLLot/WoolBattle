@@ -24,7 +24,7 @@ class SlimePlatform : Listener{
         if(ItemAmount.getPlayerItemCount(player, Material.RED_WOOL) < amount)return
 
         val location = player.location.add(0.0, -3.0, 0.0)
-        ItemFeatures().spawnPlatform(location, Material.SLIME_BLOCK)
+        ItemFeatures().spawnCrossPlatform(location, Material.SLIME_BLOCK)
         WoolActions(player).reduceAmount(16)
     }
 }

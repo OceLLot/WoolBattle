@@ -1,8 +1,11 @@
 package net.ocejlot.woolbattle.feachers
 
 import net.ocejlot.woolbattle.playerPlacedBlockList
+import net.ocejlot.woolbattle.slimeBlocks
 import org.bukkit.Location
 import org.bukkit.Material
+import org.bukkit.World
+import org.bukkit.block.Block
 
 class ItemFeatures {
 
@@ -61,6 +64,27 @@ class ItemFeatures {
             if(it.block.type == Material.AIR) {
                 it.block.type = block
             }
+        }
+    }
+
+
+    fun spawnCrossPlatform(location: Location, block: Material) {
+        val world: World = location.world
+        val centerBlock: Block = location.block
+
+        // Set center block to the specified material
+        centerBlock.type = block
+
+        // Spawn arms of the cross
+        for (i in -1..1) {
+            val armBlockX: Block = world.getBlockAt(centerBlock.x + i, centerBlock.y, centerBlock.z)
+            val armBlockZ: Block = world.getBlockAt(centerBlock.x, centerBlock.y, centerBlock.z + i)
+            playerPlacedBlockList.add(armBlockX.location)
+            playerPlacedBlockList.add(armBlockZ.location)
+            slimeBlocks.add(armBlockX.location)
+            slimeBlocks.add(armBlockZ.location)
+            armBlockX.type = block
+            armBlockZ.type = block
         }
     }
 }
