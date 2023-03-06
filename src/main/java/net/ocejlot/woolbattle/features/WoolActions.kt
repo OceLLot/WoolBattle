@@ -1,4 +1,4 @@
-package net.ocejlot.woolbattle.feachers
+package net.ocejlot.woolbattle.features
 
 import org.bukkit.Material
 import org.bukkit.entity.Player

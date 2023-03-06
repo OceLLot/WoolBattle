@@ -1,6 +1,6 @@
-package net.ocejlot.woolbattle.listeners
+package net.ocejlot.woolbattle.mechanics
 
-import net.ocejlot.woolbattle.feachers.WoolActions
+import net.ocejlot.woolbattle.features.WoolActions
 import net.ocejlot.woolbattle.generatorBlockList
 import net.ocejlot.woolbattle.playerPlacedBlockList
 import net.ocejlot.woolbattle.plugin
@@ -12,13 +12,12 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockBreakEvent
 
-class BlockGenerator: Listener {
+class WoolGenerator: Listener {
     
     @EventHandler
     fun breakEvent(event: BlockBreakEvent) {
         val block = event.block
         val player = event.player
-
 
         //Якщо увімкнений дебаг мод то можна ламати генератори
         if(wbDebugger[player.uniqueId] == true)return
@@ -26,7 +25,6 @@ class BlockGenerator: Listener {
         //Провірка на те, чи є блок в списку блоків та очистка дропів.
         if (IsWool(block.type).get())event.isDropItems = false
         else return
-
 
         //Провірка, чи досягнув гравець ліміту блоків
         val itemAmount = ItemAmount.getPlayerItemCount(player, block.type)

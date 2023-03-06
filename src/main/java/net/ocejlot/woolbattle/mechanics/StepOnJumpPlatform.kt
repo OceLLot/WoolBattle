@@ -1,4 +1,4 @@
-package net.ocejlot.woolbattle.listeners
+package net.ocejlot.woolbattle.mechanics
 
 import net.ocejlot.woolbattle.playerPlacedBlockList
 import net.ocejlot.woolbattle.plugin

@@ -1,4 +1,4 @@
-package net.ocejlot.woolbattle.feachers
+package net.ocejlot.woolbattle.features
 
 import net.ocejlot.woolbattle.playerPlacedBlockList
 import net.ocejlot.woolbattle.slimeBlocks
@@ -67,7 +67,7 @@ class ItemFeatures {
         }
     }
 
-
+    //Х-подібна платформа
     fun spawnCrossPlatform(location: Location, block: Material) {
         val world: World = location.world
         val centerBlock: Block = location.block

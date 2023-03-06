@@ -1,13 +1,14 @@
 package net.ocejlot.woolbattle
 
-import ThrowEnderPearlListener
+import net.ocejlot.woolbattle.items.ThrowEnderPearlListener
 import net.ocejlot.woolbattle.commands.WoolBattleCommand
-import net.ocejlot.woolbattle.feachers.ItemFeatures
-import net.ocejlot.woolbattle.items.JumpPlatform
-import net.ocejlot.woolbattle.items.SlimePlatform
-import net.ocejlot.woolbattle.items.WoolCapsule
-import net.ocejlot.woolbattle.items.WoolPlatform
-import net.ocejlot.woolbattle.listeners.*
+import net.ocejlot.woolbattle.items.Bow
+import net.ocejlot.woolbattle.items.ShootCrossbowListener
+import net.ocejlot.woolbattle.items.custom.JumpPlatform
+import net.ocejlot.woolbattle.items.custom.SlimePlatform
+import net.ocejlot.woolbattle.items.custom.WoolCapsule
+import net.ocejlot.woolbattle.items.custom.WoolPlatform
+import net.ocejlot.woolbattle.mechanics.*
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.plugin.Plugin
@@ -42,17 +43,16 @@ class MainWoolBattle : JavaPlugin() {
     }
 
     private fun registerEvents(){
-        Bukkit.getPluginManager().registerEvents(AddBlockToList(), plugin)
-        Bukkit.getPluginManager().registerEvents(BlockGenerator(), plugin)
-        Bukkit.getPluginManager().registerEvents(AddBlockToList(), plugin)
+        Bukkit.getPluginManager().registerEvents(WoolListManager(), plugin)
+        Bukkit.getPluginManager().registerEvents(WoolGenerator(), plugin)
+        Bukkit.getPluginManager().registerEvents(WoolListManager(), plugin)
         Bukkit.getPluginManager().registerEvents(SlimePlatform(), plugin)
         Bukkit.getPluginManager().registerEvents(JumpPlatform(), plugin)
-        Bukkit.getPluginManager().registerEvents(DeathEvent(), plugin)
-        Bukkit.getPluginManager().registerEvents(BowDestroyBlocks(), plugin)
+        Bukkit.getPluginManager().registerEvents(ResetOnDeath(), plugin)
+        Bukkit.getPluginManager().registerEvents(Bow(), plugin)
         Bukkit.getPluginManager().registerEvents(WoolPlatform(), plugin)
         Bukkit.getPluginManager().registerEvents(WoolCapsule(), plugin)
         Bukkit.getPluginManager().registerEvents(ThrowEnderPearlListener(), plugin)
-        Bukkit.getPluginManager().registerEvents(ShootBowListener(), plugin)
         Bukkit.getPluginManager().registerEvents(ShootCrossbowListener(), plugin)
         Bukkit.getPluginManager().registerEvents(StepOnJumpPlatform(), plugin)
 

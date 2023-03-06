@@ -1,4 +1,4 @@
-package net.ocejlot.woolbattle.listeners
+package net.ocejlot.woolbattle.mechanics
 
 import net.ocejlot.woolbattle.playerPlacedBlockList
 import net.ocejlot.woolbattle.plugin
@@ -8,7 +8,7 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent
 
-class DeathEvent: Listener {
+class ResetOnDeath: Listener {
 
     @EventHandler
     fun onDeath(event: PlayerDeathEvent) {

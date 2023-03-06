@@ -1,4 +1,4 @@
-package net.ocejlot.woolbattle.listeners
+package net.ocejlot.woolbattle.mechanics
 
 
 import net.ocejlot.woolbattle.generatorBlockList
@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockPlaceEvent
 
-class AddBlockToList: Listener {
+class WoolListManager: Listener {
 
     @EventHandler
     fun onPlace(event: BlockPlaceEvent){
@@ -27,26 +27,12 @@ class AddBlockToList: Listener {
             return
         }
 
-
         //Додаємо корди блоки у список
         playerPlacedBlockList.add(block.location)
-
 
         //Через 2 хв ставить блок на повітря
         Bukkit.getScheduler().runTaskLater(plugin, Runnable {
             block.type = Material.AIR
         }, 20*2*60)//затримка 2 хв
-
-
-
-
-        //щось невідоме тому прибрав
-        /*val time = System.currentTimeMillis() / 10 + 12000
-        if(generatorBlockList.contains(block.location))
-        blockTimer[time] = block.location
-
-        player.sendMessage(time.toString())
-        */
-
     }
 }

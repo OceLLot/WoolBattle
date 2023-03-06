@@ -1,4 +1,6 @@
-import net.ocejlot.woolbattle.feachers.WoolActions
+package net.ocejlot.woolbattle.items
+
+import net.ocejlot.woolbattle.features.WoolActions
 import net.ocejlot.woolbattle.util.ItemAmount
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
