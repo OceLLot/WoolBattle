@@ -12,6 +12,12 @@ object ItemStorage {
         }
     }
 
+    val jumpPlatformItem = ItemStack(Material.AZALEA).apply {
+        itemMeta = itemMeta.also { its ->
+            its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><green>Платформа-бустер"))
+        }
+    }
+
     val woolRoundPlatformItem = ItemStack(Material.BLAZE_ROD).apply {
         itemMeta = itemMeta.also { its ->
             its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><red>Вовнова-платформа"))

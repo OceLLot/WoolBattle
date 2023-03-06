@@ -3,6 +3,7 @@ package net.ocejlot.woolbattle
 import ThrowEnderPearlListener
 import net.ocejlot.woolbattle.commands.WoolBattleCommand
 import net.ocejlot.woolbattle.feachers.ItemFeatures
+import net.ocejlot.woolbattle.items.JumpPlatform
 import net.ocejlot.woolbattle.items.SlimePlatform
 import net.ocejlot.woolbattle.items.WoolCapsule
 import net.ocejlot.woolbattle.items.WoolPlatform
@@ -45,6 +46,7 @@ class MainWoolBattle : JavaPlugin() {
         Bukkit.getPluginManager().registerEvents(BlockGenerator(), plugin)
         Bukkit.getPluginManager().registerEvents(AddBlockToList(), plugin)
         Bukkit.getPluginManager().registerEvents(SlimePlatform(), plugin)
+        Bukkit.getPluginManager().registerEvents(JumpPlatform(), plugin)
         Bukkit.getPluginManager().registerEvents(DeathEvent(), plugin)
         Bukkit.getPluginManager().registerEvents(BowDestroyBlocks(), plugin)
         Bukkit.getPluginManager().registerEvents(WoolPlatform(), plugin)

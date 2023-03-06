@@ -83,8 +83,12 @@ class ItemFeatures {
             playerPlacedBlockList.add(armBlockZ.location)
             slimeBlocks.add(armBlockX.location)
             slimeBlocks.add(armBlockZ.location)
-            armBlockX.type = block
-            armBlockZ.type = block
+            if (armBlockX.type == Material.AIR) {
+                armBlockX.type = block
+            }
+            if (armBlockZ.type == Material.AIR) {
+                armBlockZ.type = block
+            }
         }
     }
 }

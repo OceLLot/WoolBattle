@@ -44,15 +44,19 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
             if(args[1] == "shears"){
                 inventory.addItem(ItemStorage.shears)
             }
-
-            //Якщо чувак ввів /woolbattle item slime
-            if(args[1] == "slime"){
-                inventory.addItem(ItemStorage.slimePlatformItem)
-            }
-
             if(args[1] == "bow"){
                 inventory.addItem(ItemStorage.knockbackBow)
             }
+
+            //Якщо чувак ввів /woolbattle item slime
+            if(args[1] == "slime_platform"){
+                inventory.addItem(ItemStorage.slimePlatformItem)
+            }
+
+            if(args[1] == "jump_platform"){
+                inventory.addItem(ItemStorage.jumpPlatformItem)
+            }
+
             if(args[1] == "wool_platform"){
                 inventory.addItem(ItemStorage.woolRoundPlatformItem)
             }
@@ -68,7 +72,7 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
         }
 
         if(args.size == 2){
-            return mutableListOf("shears", "slime", "bow", "wool_platform", "capsule")
+            return mutableListOf("shears", "bow", "slime_platform", "jump_platform", "wool_platform", "capsule")
         }
 
     return mutableListOf()
