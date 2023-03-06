@@ -40,15 +40,15 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
             }
             val inventory = sender.inventory
 
-            //Якщо чувак ввів /woolbattle item shears
+
             if(args[1] == "shears"){
                 inventory.addItem(ItemStorage.shears)
             }
+
             if(args[1] == "bow"){
                 inventory.addItem(ItemStorage.knockbackBow)
             }
 
-            //Якщо чувак ввів /woolbattle item slime
             if(args[1] == "slime_platform"){
                 inventory.addItem(ItemStorage.slimePlatformItem)
             }
@@ -60,19 +60,35 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
             if(args[1] == "wool_platform"){
                 inventory.addItem(ItemStorage.woolRoundPlatformItem)
             }
+
             if(args[1] == "capsule"){
                 inventory.addItem(ItemStorage.woolCapsuleItem)
             }
+
+            if(args[1] == "enderpearl"){
+                inventory.addItem(ItemStorage.enderpearl)
+            }
+
+            if(args[1] == "crossbow"){
+                inventory.addItem(ItemStorage.rideableCrossbow)
+            }
+
+            if(args[1] == "snowball"){
+                inventory.addItem(ItemStorage.swapSnowball)
+            }
         }
-    return false}
+    return false
+    }
 
     override fun onTabComplete(sender: CommandSender, command: Command, label: String, args: Array<out String>): MutableList<String> {
         if(args.size == 1){
-            return mutableListOf("debug", "item")
+            return mutableListOf("debug", "item", "start")
         }
 
         if(args.size == 2){
-            return mutableListOf("shears", "bow", "slime_platform", "jump_platform", "wool_platform", "capsule")
+            return mutableListOf("shears", "bow", "slime_platform",
+                    "jump_platform", "wool_platform", "capsule",
+                    "enderpearl", "crossbow", "snowball")
         }
 
     return mutableListOf()
