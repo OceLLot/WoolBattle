@@ -24,7 +24,7 @@ class StepOnJumpPlatform : Listener {
         val bottomBlock: Block = world.getBlockAt(location.x.toInt(), (location.y - 1).toInt(), location.z.toInt())
         if(slimeBlocks.contains(bottomBlock.location)) {
 
-            val randomVel = Random.nextInt(10, 40)
+            val randomVel = Random.nextInt(3, 30)
             val currentVelocity = player.velocity
             val newVelocity = Vector(currentVelocity.x, currentVelocity.y + randomVel, currentVelocity.z)
             player.velocity = newVelocity
