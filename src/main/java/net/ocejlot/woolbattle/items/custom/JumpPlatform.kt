@@ -21,7 +21,7 @@ class JumpPlatform : Listener{
         if(event.hand != EquipmentSlot.HAND)return
         if(item != ItemStorage.jumpPlatformItem)return
         if(event.action == Action.LEFT_CLICK_AIR || event.action == Action.LEFT_CLICK_BLOCK)return
-        if(ItemAmount.getPlayerItemCount(player, Material.RED_WOOL) < amount)return
+        if(ItemAmount.getPlayerWoolCount(player) < amount)return
 
         val location = player.location.add(0.0, -6.0, 0.0)
         ItemFeatures().spawnCrossPlatform(location, Material.SLIME_BLOCK)

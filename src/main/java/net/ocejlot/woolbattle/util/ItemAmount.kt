@@ -1,10 +1,9 @@
 package net.ocejlot.woolbattle.util
 
-import org.bukkit.Material
 import org.bukkit.entity.Player
 
 object ItemAmount {
-    fun getPlayerItemCount(player: Player, material: Material): Int {
+    fun getPlayerWoolCount(player: Player): Int {
         var count = 0
         val inventory = player.inventory
         for (item in inventory) {
@@ -15,4 +14,3 @@ object ItemAmount {
         return count
     }
 }
-

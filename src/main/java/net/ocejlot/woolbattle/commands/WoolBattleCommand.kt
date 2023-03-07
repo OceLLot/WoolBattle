@@ -1,6 +1,7 @@
 package net.ocejlot.woolbattle.commands
 
 import net.kyori.adventure.text.minimessage.MiniMessage
+import net.ocejlot.woolbattle.mapmenager.GameStart
 import net.ocejlot.woolbattle.util.ItemStorage
 import net.ocejlot.woolbattle.wbDebugger
 import org.bukkit.command.Command
@@ -76,7 +77,15 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
             if(args[1] == "snowball"){
                 inventory.addItem(ItemStorage.swapSnowball)
             }
+
+
+
+        }else if(args[0] == "start"){
+            sender.sendMessage("started")
+            GameStart().start()
         }
+
+
     return false
     }
 

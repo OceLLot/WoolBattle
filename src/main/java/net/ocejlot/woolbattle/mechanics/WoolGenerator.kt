@@ -27,7 +27,7 @@ class WoolGenerator: Listener {
         else return
 
         //Провірка, чи досягнув гравець ліміту блоків
-        val itemAmount = ItemAmount.getPlayerItemCount(player, block.type)
+        val itemAmount = ItemAmount.getPlayerWoolCount(player)
         val stackCount = 3
         if (itemAmount < (64*stackCount)) {
             WoolActions(player).addAmount(1)

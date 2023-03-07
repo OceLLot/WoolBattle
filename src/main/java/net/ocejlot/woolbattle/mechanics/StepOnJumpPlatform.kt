@@ -17,7 +17,7 @@ import kotlin.random.Random
 class StepOnJumpPlatform : Listener {
 
     @EventHandler
-    fun OnStep(event: PlayerMoveEvent){
+    fun onStep(event: PlayerMoveEvent){
         val player = event.player
         val location = player.location
         val world = player.world
@@ -29,7 +29,7 @@ class StepOnJumpPlatform : Listener {
             val newVelocity = Vector(currentVelocity.x, currentVelocity.y + randomVel, currentVelocity.z)
             player.velocity = newVelocity
 
-            ClearPlatform(player.location.add(0.0, -1.0, 0.0))
+            clearPlatform(player.location.add(0.0, -1.0, 0.0))
 
             Bukkit.getScheduler().runTask(plugin, Runnable {
                 slimeBlocks.toList().forEach() {
@@ -39,7 +39,7 @@ class StepOnJumpPlatform : Listener {
         }
     }
 
-    fun ClearPlatform(location: Location){
+    private fun clearPlatform(location: Location){
         for (x in location.blockX - 2..location.blockX + 2) {
             for (y in location.blockY..location.blockY) {
                 for (z in location.blockZ - 2..location.blockZ + 2) {

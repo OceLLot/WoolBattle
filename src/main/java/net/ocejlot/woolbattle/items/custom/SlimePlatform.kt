@@ -21,7 +21,7 @@ class SlimePlatform : Listener{
         if(event.hand != EquipmentSlot.HAND)return
         if(item != ItemStorage.slimePlatformItem)return
         if(event.action == Action.LEFT_CLICK_AIR || event.action == Action.LEFT_CLICK_BLOCK)return
-        if(ItemAmount.getPlayerItemCount(player, Material.RED_WOOL) < amount)return
+        if(ItemAmount.getPlayerWoolCount(player) < amount)return
 
         val location = player.location.add(0.0, -4.0, 0.0)
         ItemFeatures().spawnPlatform(location, Material.SLIME_BLOCK)

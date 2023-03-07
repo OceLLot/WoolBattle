@@ -16,7 +16,7 @@ class ThrowEnderPearlListener : Listener {
             val player = event.player
             val amount = 8
             WoolActions(player).reduceAmount(amount)
-            if(ItemAmount.getPlayerItemCount(player, Material.RED_WOOL) < amount) {
+            if(ItemAmount.getPlayerWoolCount(player) < amount) {
                 event.isCancelled = true
                 return
             }

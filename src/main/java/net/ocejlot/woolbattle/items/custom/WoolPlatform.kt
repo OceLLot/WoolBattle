@@ -22,7 +22,7 @@ class WoolPlatform : Listener{
         if(event.hand != EquipmentSlot.HAND)return
         if(item != ItemStorage.woolRoundPlatformItem)return
         if(event.action == Action.LEFT_CLICK_AIR || event.action == Action.LEFT_CLICK_BLOCK)return
-        if(ItemAmount.getPlayerItemCount(player, Material.RED_WOOL) < amount)return
+        if(ItemAmount.getPlayerWoolCount(player) < amount)return
 
         val location = player.location.add(0.0, -4.0, 0.0)
         ItemFeatures().spawnRoundPlatform(location, Material.WHITE_WOOL)

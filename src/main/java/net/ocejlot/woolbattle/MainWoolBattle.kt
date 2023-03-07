@@ -8,9 +8,12 @@ import net.ocejlot.woolbattle.items.custom.JumpPlatform
 import net.ocejlot.woolbattle.items.custom.SlimePlatform
 import net.ocejlot.woolbattle.items.custom.WoolCapsule
 import net.ocejlot.woolbattle.items.custom.WoolPlatform
+import net.ocejlot.woolbattle.mapmenager.GameStart
 import net.ocejlot.woolbattle.mechanics.*
 import org.bukkit.Bukkit
 import org.bukkit.Location
+import org.bukkit.Material
+import org.bukkit.entity.Projectile
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.*
@@ -21,7 +24,8 @@ var playerPlacedBlockList = mutableListOf<Location>()
 var generatorBlockList = mutableListOf<Location>()
 var woolState = hashMapOf<Location, Boolean>()
 var slimeBlocks = mutableListOf<Location>()
-
+var woolColor = hashMapOf<UUID, Material>()
+var arrows = mutableListOf<Projectile>()
 
 
 class MainWoolBattle : JavaPlugin() {
@@ -29,12 +33,7 @@ class MainWoolBattle : JavaPlugin() {
         plugin = this
         registerEvents()
         registerCommands()
-        logger.info("This peace of shit now is working")
-
-    }
-
-    override fun onDisable() {
-        logger.warning("FUCK! Everything is fucked up")
+        logger.info("WoolBattle loaded")
     }
 
     private fun registerCommands(){
@@ -43,18 +42,20 @@ class MainWoolBattle : JavaPlugin() {
     }
 
     private fun registerEvents(){
-        Bukkit.getPluginManager().registerEvents(WoolListManager(), plugin)
-        Bukkit.getPluginManager().registerEvents(WoolGenerator(), plugin)
-        Bukkit.getPluginManager().registerEvents(WoolListManager(), plugin)
-        Bukkit.getPluginManager().registerEvents(SlimePlatform(), plugin)
-        Bukkit.getPluginManager().registerEvents(JumpPlatform(), plugin)
-        Bukkit.getPluginManager().registerEvents(ResetOnDeath(), plugin)
-        Bukkit.getPluginManager().registerEvents(Bow(), plugin)
-        Bukkit.getPluginManager().registerEvents(WoolPlatform(), plugin)
-        Bukkit.getPluginManager().registerEvents(WoolCapsule(), plugin)
-        Bukkit.getPluginManager().registerEvents(ThrowEnderPearlListener(), plugin)
-        Bukkit.getPluginManager().registerEvents(ShootCrossbowListener(), plugin)
-        Bukkit.getPluginManager().registerEvents(StepOnJumpPlatform(), plugin)
+        val plManager = Bukkit.getPluginManager()
 
+        plManager.registerEvents(WoolListManager(), plugin)
+        plManager.registerEvents(WoolGenerator(), plugin)
+        plManager.registerEvents(WoolListManager(), plugin)
+        plManager.registerEvents(SlimePlatform(), plugin)
+        plManager.registerEvents(JumpPlatform(), plugin)
+        plManager.registerEvents(ResetOnDeath(), plugin)
+        plManager.registerEvents(Bow(), plugin)
+        plManager.registerEvents(WoolPlatform(), plugin)
+        plManager.registerEvents(WoolCapsule(), plugin)
+        plManager.registerEvents(ThrowEnderPearlListener(), plugin)
+        plManager.registerEvents(ShootCrossbowListener(), plugin)
+        plManager.registerEvents(StepOnJumpPlatform(), plugin)
+        plManager.registerEvents(GameStart(), plugin)
     }
 }

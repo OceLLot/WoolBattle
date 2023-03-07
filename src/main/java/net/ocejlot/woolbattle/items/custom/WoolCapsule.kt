@@ -23,7 +23,7 @@ class WoolCapsule : Listener {
         if(event.hand != EquipmentSlot.HAND)return
         if(item != ItemStorage.woolCapsuleItem)return
         if(event.action == Action.LEFT_CLICK_AIR || event.action == Action.LEFT_CLICK_BLOCK)return
-        if(ItemAmount.getPlayerItemCount(player, Material.RED_WOOL) < amount)return
+        if(ItemAmount.getPlayerWoolCount(player) < amount)return
 
         val location = player.location
 

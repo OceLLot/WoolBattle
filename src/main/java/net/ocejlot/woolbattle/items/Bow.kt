@@ -1,5 +1,6 @@
 package net.ocejlot.woolbattle.items
 
+import net.ocejlot.woolbattle.arrows
 import net.ocejlot.woolbattle.features.WoolActions
 import net.ocejlot.woolbattle.generatorBlockList
 import net.ocejlot.woolbattle.playerPlacedBlockList
@@ -10,6 +11,7 @@ import org.bukkit.Material
 import org.bukkit.entity.Arrow
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
+import org.bukkit.entity.Projectile
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityShootBowEvent
@@ -56,11 +58,12 @@ class Bow: Listener {
         if (player !is Player || event.bow?.type != Material.BOW)return
 
         val amount = 2
-        if (ItemAmount.getPlayerItemCount(player, Material.RED_WOOL) < amount) {
+        if (ItemAmount.getPlayerWoolCount(player) < amount) {
             event.isCancelled = true
             return
         }else{
             WoolActions(player).reduceAmount(amount)
+            arrows.add(event.projectile as Projectile)
         }
     }
 }

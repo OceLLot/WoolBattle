@@ -16,7 +16,7 @@ class ShootCrossbowListener : Listener {
         if (player !is Player || event.bow?.type != Material.CROSSBOW)return
 
         val amount = 28
-        if (ItemAmount.getPlayerItemCount(player, Material.RED_WOOL) < amount) {
+        if (ItemAmount.getPlayerWoolCount(player) < amount) {
             event.isCancelled = true
             return
         } else {
