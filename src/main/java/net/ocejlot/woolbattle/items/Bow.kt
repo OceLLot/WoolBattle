@@ -1,12 +1,10 @@
 package net.ocejlot.woolbattle.items
 
-import net.ocejlot.woolbattle.arrows
+import net.ocejlot.woolbattle.*
 import net.ocejlot.woolbattle.features.WoolActions
-import net.ocejlot.woolbattle.generatorBlockList
-import net.ocejlot.woolbattle.playerPlacedBlockList
 import net.ocejlot.woolbattle.util.IsWool
 import net.ocejlot.woolbattle.util.ItemAmount
-import net.ocejlot.woolbattle.woolState
+import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Arrow
 import org.bukkit.entity.EntityType
@@ -34,7 +32,8 @@ class Bow: Listener {
             //Провірка, чи не є часом цей блок поставленим гравцем.
             if(playerPlacedBlockList.contains(location)){
                 playerPlacedBlockList.remove(location)
-                return}
+                return
+            }
 
             //Провірка, чи не є часом цей блок - вперше зломаним блоком генератора
             if(!generatorBlockList.contains(location)){

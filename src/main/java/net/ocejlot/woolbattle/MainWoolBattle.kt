@@ -57,5 +57,7 @@ class MainWoolBattle : JavaPlugin() {
         plManager.registerEvents(ShootCrossbowListener(), plugin)
         plManager.registerEvents(StepOnJumpPlatform(), plugin)
         plManager.registerEvents(GameStart(), plugin)
+        plManager.registerEvents(ImmuneFixes(), plugin)
+
     }
 }

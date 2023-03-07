@@ -4,6 +4,7 @@ package net.ocejlot.woolbattle.mechanics
 import net.ocejlot.woolbattle.generatorBlockList
 import net.ocejlot.woolbattle.playerPlacedBlockList
 import net.ocejlot.woolbattle.plugin
+import net.ocejlot.woolbattle.util.IsWool
 import net.ocejlot.woolbattle.wbDebugger
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -20,6 +21,9 @@ class WoolListManager: Listener {
 
         //Якщо увімкнений дебаг мод до нічого не додає і блок не зникне
         if(wbDebugger[uuid] == true)return
+
+        //Перевірка на вовну
+        if(!IsWool(block.type).get())return
 
         //Чи не поставив гравець блок на місце генератора
         if(generatorBlockList.contains(block.location)){
