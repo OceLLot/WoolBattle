@@ -4,6 +4,7 @@ import net.ocejlot.woolbattle.items.ThrowEnderPearlListener
 import net.ocejlot.woolbattle.commands.WoolBattleCommand
 import net.ocejlot.woolbattle.items.Bow
 import net.ocejlot.woolbattle.items.ShootCrossbowListener
+import net.ocejlot.woolbattle.items.SnowballSwapper
 import net.ocejlot.woolbattle.items.custom.JumpPlatform
 import net.ocejlot.woolbattle.items.custom.SlimePlatform
 import net.ocejlot.woolbattle.items.custom.WoolCapsule
@@ -58,6 +59,6 @@ class MainWoolBattle : JavaPlugin() {
         plManager.registerEvents(StepOnJumpPlatform(), plugin)
         plManager.registerEvents(GameStart(), plugin)
         plManager.registerEvents(ImmuneFixes(), plugin)
-
+        plManager.registerEvents(SnowballSwapper(), plugin)
     }
 }

@@ -8,9 +8,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerInteractEvent
 
 class ThrowEnderPearlListener : Listener {
-
     @EventHandler
-
     fun onPlayerThrowEnderPearl(event: PlayerInteractEvent) {
         if (event.item?.type == Material.ENDER_PEARL) {
             val player = event.player
@@ -20,11 +18,6 @@ class ThrowEnderPearlListener : Listener {
                 event.isCancelled = true
                 return
             }
-
         }
     }
 }
-
-
-
-

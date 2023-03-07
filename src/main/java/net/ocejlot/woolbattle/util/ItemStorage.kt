@@ -52,7 +52,7 @@ object ItemStorage {
 
     val swapSnowball = ItemStack(Material.SNOWBALL).apply {
         itemMeta = itemMeta.also { its ->
-            its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><cyan>Сніжка обміну"))
+            its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><aqua>Сніжка обміну"))
         }
     }
 

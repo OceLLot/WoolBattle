@@ -19,37 +19,30 @@ class Bow: Listener {
 
     @EventHandler
     fun onArrowHitWool(event: ProjectileHitEvent){
-        if (event.entity is Arrow) {
-            val arrow = event.entity as Arrow
+        val arrow = event.entity
+        if (arrow !is Arrow)return
 
-            val block = event.hitBlock ?: return //Якщо null - return
-            val location = block.location
-            arrow.remove()
+        val block = event.hitBlock ?: return //Якщо null - return
+        val location = block.location
+        arrow.remove()
 
-            if(arrow.type != EntityType.ARROW)return
-            if(!IsWool(block.type).get())return
+        if(arrow.type != EntityType.ARROW)return
+        if(!IsWool(block.type).get())return
 
-            //Провірка, чи не є часом цей блок поставленим гравцем.
-            if(playerPlacedBlockList.contains(location)){
-                playerPlacedBlockList.remove(location)
-                return
-            }
-
-            //Провірка, чи не є часом цей блок - вперше зломаним блоком генератора
-            if(!generatorBlockList.contains(location)){
-                generatorBlockList.add(location)
-            }
-
-            if(!woolState.contains(location)){
-                woolState[location] = true
-            }else{
-                woolState.remove(location)
-                block.type = Material.AIR
+        if(!woolState.contains(location)){
+            woolState[location] = true
+        }else{
+            val type = block.type
+            woolState.remove(location)
+            block.type = Material.AIR
+            if(!playerPlacedBlockList.contains(location)){
+                generatorBlockList.add(block.location)
+                Bukkit.getScheduler().runTaskLater(plugin, Runnable {
+                    block.type = type
+                }, 10)
             }
         }
     }
-
-
 
     @EventHandler
     fun onBowShot(event: EntityShootBowEvent) {

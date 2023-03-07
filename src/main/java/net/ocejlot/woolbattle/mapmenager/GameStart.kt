@@ -1,6 +1,7 @@
 package net.ocejlot.woolbattle.mapmenager
 
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.minimessage.MiniMessage
 import net.ocejlot.woolbattle.data.TeamData
 import net.ocejlot.woolbattle.util.ItemStorage
 import net.ocejlot.woolbattle.woolColor
@@ -12,28 +13,24 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.inventory.ItemStack
+import org.bukkit.scoreboard.DisplaySlot
+
+val redTeam = TeamData("Red", mutableListOf(), 12)
+val blueTeam = TeamData("Blue", mutableListOf(), 12)
 
 class GameStart: Listener{
 
-    companion object {
-        val redTeam = TeamData("Red", mutableListOf())
-        val blueTeam = TeamData("Blue", mutableListOf())
-    }
-
     private fun addPlayerToTeam(player: Player) {
-        val condition = redTeam.members.size > blueTeam.members.size
-        Bukkit.broadcast(Component.text(condition.toString()))
-        Bukkit.broadcast(Component.text(redTeam.members.size))
-        Bukkit.broadcast(Component.text(blueTeam.members.size))
+        val minimessage = MiniMessage.miniMessage()
 
-        if (condition) {
+        if (redTeam.members.size > blueTeam.members.size) {
             blueTeam.members.add(player)
-            player.setPlayerListName("§3[BLUE] §b${player.name}")
+            player.playerListName(minimessage.deserialize("<dark_blue>[BLUE] <aqua>${player.name}"))
             woolColor[player.uniqueId] = Material.BLUE_WOOL
             player.sendMessage("Ви приєднались до команди синіх")
         } else {
             redTeam.members.add(player)
-            player.setPlayerListName("§4[RED] §c${player.name}")
+            player.playerListName(minimessage.deserialize("<dark_red>[RED] <red>${player.name}"))
             woolColor[player.uniqueId] = Material.RED_WOOL
             player.sendMessage("Ви приєднались до команди червоних")
         }
@@ -45,11 +42,15 @@ class GameStart: Listener{
         val blueTeamLoc = Location(world, -10.5, 100.0, 0.5)
 
         redTeam.members.forEach{player ->
+            Scoreboard().display(player)
+            player.inventory.clear()
             player.teleport(redTeamLoc)
             kitStart(player)
         }
 
         blueTeam.members.forEach{player ->
+            Scoreboard().display(player)
+            player.inventory.clear()
             player.teleport(blueTeamLoc)
             kitStart(player)
         }
@@ -66,6 +67,14 @@ class GameStart: Listener{
 
     @EventHandler
     fun onJoin(event: PlayerJoinEvent){
-        addPlayerToTeam(event.player)
+        val onlinePlayers = Bukkit.getOnlinePlayers().size
+        val player = event.player
+        addPlayerToTeam(player)
+        if(onlinePlayers < 3) {
+            event.joinMessage(MiniMessage.miniMessage().deserialize("<aqua>[$onlinePlayers/2] <white>${player.name} приєднався до гри!"))
+        }else{
+            event.joinMessage(Component.text(""))
+            player.kick(Component.text("Занадто багато гравців, ви не можете під'єднатись!"))
+        }
     }
 }

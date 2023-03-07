@@ -9,7 +9,6 @@ import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause
 import org.bukkit.event.entity.FoodLevelChangeEvent
-import org.bukkit.event.player.PlayerJoinEvent
 
 class ImmuneFixes: Listener {
     @EventHandler
@@ -34,7 +33,7 @@ class ImmuneFixes: Listener {
         if(player !is Player)return
         if(event.cause == DamageCause.FALL)return
 
-        player.health = 20.0
+        event.damage = 0.0
     }
 
     @EventHandler

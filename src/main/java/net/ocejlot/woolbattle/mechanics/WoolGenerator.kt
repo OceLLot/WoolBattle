@@ -40,7 +40,8 @@ class WoolGenerator: Listener {
         //Провірка, чи не є часом цей блок поставленим гравцем.
         if(playerPlacedBlockList.contains(block.location)){
             playerPlacedBlockList.remove(block.location)
-            return}
+            return
+        }
 
         //Провірка, чи не є часом цей блок - вперше зломаним блоком генератора
         if(!generatorBlockList.contains(block.location)){
