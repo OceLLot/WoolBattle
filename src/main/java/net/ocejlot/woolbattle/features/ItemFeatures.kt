@@ -1,11 +1,17 @@
 package net.ocejlot.woolbattle.features
 
+import net.kyori.adventure.text.minimessage.MiniMessage
 import net.ocejlot.woolbattle.playerPlacedBlockList
+import net.ocejlot.woolbattle.plugin
 import net.ocejlot.woolbattle.slimeBlocks
+import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.World
 import org.bukkit.block.Block
+import org.bukkit.entity.Player
+import org.bukkit.inventory.ItemStack
+import kotlin.random.Random
 
 class ItemFeatures {
 
@@ -91,6 +97,36 @@ class ItemFeatures {
             }
         }
     }
+
+
+
+    fun itemCooldown(player: Player, material: Material, resultItem: ItemStack, time: Int, slot: Int){
+        val inventory = player.inventory
+        var count = time
+
+        var taskId = Random.nextInt()
+        taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, {
+            if(count <= 0) {
+                //Що робити по завершенню таймера
+                inventory.setItem(slot, resultItem)
+
+
+
+                Bukkit.getScheduler().cancelTask(taskId)
+                return@scheduleSyncRepeatingTask
+            }
+            //Що робити кожен раз, до тих під доки таймер не вимкнеться
+
+            val cdItem = ItemStack(material, count).apply {
+                itemMeta = itemMeta.also { its ->
+                    its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><red>Перезарядка"))
+                }
+            }
+
+            inventory.setItem(slot, cdItem)
+
+            count--
+        },20,20)
+
+    }
 }
-
-

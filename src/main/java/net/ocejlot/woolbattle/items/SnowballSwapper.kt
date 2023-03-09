@@ -1,6 +1,11 @@
 package net.ocejlot.woolbattle.items
 
+import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.minimessage.MiniMessage
+import net.ocejlot.woolbattle.features.ItemFeatures
+import net.ocejlot.woolbattle.features.WoolActions
 import net.ocejlot.woolbattle.plugin
+import net.ocejlot.woolbattle.util.ItemAmount
 import net.ocejlot.woolbattle.util.ItemStorage
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -22,34 +27,31 @@ class SnowballSwapper: Listener {
     fun onSnowballThrow(event: PlayerInteractEvent){
         val player = event.player
         val item = event.item ?: return
+        val amount = 16
 
-        if(item.type != Material.SNOWBALL)return
         if(item != ItemStorage.swapSnowball)return
         if(event.hand != EquipmentSlot.HAND)return
-        if(event.action == Action.LEFT_CLICK_BLOCK || event.action == Action.LEFT_CLICK_BLOCK)return
+        if(event.action == Action.LEFT_CLICK_BLOCK || event.action == Action.LEFT_CLICK_AIR)return
 
-        val inventory = player.inventory
-        val slot = inventory.heldItemSlot
-        var count = 5
+        if(ItemAmount.getPlayerWoolCount(player) < amount) {
+            event.isCancelled = true
+            return
+        }
 
-        var taskId = Random.nextInt()
-        taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, {
-            if(count <= 0) {  //if looped 5 times do:
-                inventory.setItem(slot, ItemStorage.swapSnowball)
-                Bukkit.getScheduler().cancelTask(taskId)  //cancel loop
-                return@scheduleSyncRepeatingTask
-            }
-            inventory.setItem(slot, ItemStack(Material.SNOWBALL, count))
-            count--  //-1 from timers
-        },20,20)  //20 ticks delay
+        WoolActions(player).reduceAmount(amount)
+
+        //кд
+        val slot = player.inventory.heldItemSlot
+        ItemFeatures().itemCooldown(player, Material.SNOWBALL, ItemStorage.swapSnowball, 5, slot)
     }
 
     @EventHandler
     fun onSnowballHit(event: ProjectileHitEvent){
-        val swapper = event.entity.shooter as Player
+        val swapper = event.entity.shooter ?: return
         val swapped = event.hitEntity ?: return
         val snowball = event.entity
 
+        if(swapper !is Player)return
         if(swapped !is Player)return
         if(snowball.type != EntityType.SNOWBALL)return
 

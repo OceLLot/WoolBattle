@@ -11,6 +11,7 @@ import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockBreakEvent
+import kotlin.math.floor
 
 class WoolGenerator: Listener {
     
@@ -23,13 +24,12 @@ class WoolGenerator: Listener {
         if(wbDebugger[player.uniqueId] == true)return
 
         //Провірка на те, чи є блок в списку блоків та очистка дропів.
-        if (IsWool(block.type).get())event.isDropItems = false
-        else return
+        if (IsWool(block.type).get()) event.isDropItems = false else return
 
         //Провірка, чи досягнув гравець ліміту блоків
         val itemAmount = ItemAmount.getPlayerWoolCount(player)
-        val stackCount = 3
-        if (itemAmount < (64*stackCount)) {
+        val stackCount = 3*64
+        if (itemAmount < stackCount) {
             WoolActions(player).addAmount(1)
         }
 

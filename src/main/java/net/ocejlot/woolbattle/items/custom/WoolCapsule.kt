@@ -2,6 +2,7 @@ package net.ocejlot.woolbattle.items.custom
 
 import net.ocejlot.woolbattle.features.ItemFeatures
 import net.ocejlot.woolbattle.features.WoolActions
+import net.ocejlot.woolbattle.playerData
 import net.ocejlot.woolbattle.util.ItemAmount
 import net.ocejlot.woolbattle.util.ItemStorage
 import org.bukkit.Location
@@ -32,7 +33,7 @@ class WoolCapsule : Listener {
         player.teleport(roundedLocation)
 
 
-        ItemFeatures().spawnWoolCapsule(location, Material.RED_WOOL)
+        ItemFeatures().spawnWoolCapsule(location, playerData[player.uniqueId]!!.woolColor)
         WoolActions(player).reduceAmount(16)
     }
 }

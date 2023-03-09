@@ -30,12 +30,6 @@ class StepOnJumpPlatform : Listener {
             player.velocity = newVelocity
 
             clearPlatform(player.location.add(0.0, -1.0, 0.0))
-
-            Bukkit.getScheduler().runTask(plugin, Runnable {
-                slimeBlocks.toList().forEach() {
-                    slimeBlocks.remove(it.block.location)
-                }
-            })
         }
     }
 
@@ -45,8 +39,10 @@ class StepOnJumpPlatform : Listener {
                 for (z in location.blockZ - 2..location.blockZ + 2) {
                     val blockLocation = Location(location.world, x.toDouble(), y.toDouble(), z.toDouble())
                     if(blockLocation.block.type == Material.SLIME_BLOCK){
-                        playerPlacedBlockList.add(blockLocation)
-                        blockLocation.block.type = Material.AIR
+                        if(slimeBlocks.contains(blockLocation)) {
+                            blockLocation.block.type = Material.AIR
+                            slimeBlocks.remove(blockLocation)
+                        }
                     }
                 }
             }

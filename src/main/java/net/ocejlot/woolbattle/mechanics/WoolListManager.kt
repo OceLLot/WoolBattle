@@ -19,7 +19,7 @@ class WoolListManager: Listener {
         val block = event.block
         val uuid = event.player.uniqueId
 
-        //Якщо увімкнений дебаг мод до нічого не додає і блок не зникне
+        //Якщо увімкнений дебаг мод то нічого не додає
         if(wbDebugger[uuid] == true)return
 
         //Перевірка на вовну
@@ -33,10 +33,5 @@ class WoolListManager: Listener {
 
         //Додаємо корди блоки у список
         playerPlacedBlockList.add(block.location)
-
-        //Через 2 хв ставить блок на повітря
-        Bukkit.getScheduler().runTaskLater(plugin, Runnable {
-            block.type = Material.AIR
-        }, 20*2*60)//затримка 2 хв
     }
 }

@@ -2,6 +2,7 @@ package net.ocejlot.woolbattle.items.custom
 
 import net.ocejlot.woolbattle.features.ItemFeatures
 import net.ocejlot.woolbattle.features.WoolActions
+import net.ocejlot.woolbattle.playerData
 import net.ocejlot.woolbattle.util.ItemAmount
 import net.ocejlot.woolbattle.util.ItemStorage
 import org.bukkit.Material
@@ -25,7 +26,7 @@ class WoolPlatform : Listener{
         if(ItemAmount.getPlayerWoolCount(player) < amount)return
 
         val location = player.location.add(0.0, -4.0, 0.0)
-        ItemFeatures().spawnRoundPlatform(location, Material.WHITE_WOOL)
+        ItemFeatures().spawnRoundPlatform(location, playerData[player.uniqueId]!!.woolColor)
         WoolActions(player).reduceAmount(16)
     }
 }

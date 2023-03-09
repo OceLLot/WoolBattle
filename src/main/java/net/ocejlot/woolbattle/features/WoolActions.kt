@@ -1,6 +1,6 @@
 package net.ocejlot.woolbattle.features
 
-import net.ocejlot.woolbattle.woolColor
+import net.ocejlot.woolbattle.playerData
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
@@ -12,13 +12,13 @@ class WoolActions(
 
     //Відняти кількість вовни
     fun reduceAmount(amount: Int){
-        val wool = woolColor[uuid]!!
+        val wool = playerData[uuid]!!.woolColor
         inventory.removeItem(ItemStack(wool, amount))
     }
 
     //Додати кількість вовни
     fun addAmount(amount: Int){
-        val wool = woolColor[uuid]!!
+        val wool = playerData[uuid]!!.woolColor
         inventory.addItem(ItemStack(wool, amount))
     }
 }

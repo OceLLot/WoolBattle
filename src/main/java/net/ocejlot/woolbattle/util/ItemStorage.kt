@@ -66,7 +66,13 @@ object ItemStorage {
 
     val enderpearl = ItemStack(Material.ENDER_PEARL).apply {
         itemMeta = itemMeta.also { its ->
-            its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><purple>Перлина енду"))
+            its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><dark_purple>Перлина енду"))
+        }
+    }
+
+    val perkMenuItem = ItemStack(Material.EMERALD).apply {
+        itemMeta = itemMeta.also { its ->
+            its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><green>Меню вибора перків"))
         }
     }
 }

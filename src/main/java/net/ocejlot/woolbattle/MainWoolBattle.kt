@@ -2,13 +2,13 @@ package net.ocejlot.woolbattle
 
 import net.ocejlot.woolbattle.items.ThrowEnderPearlListener
 import net.ocejlot.woolbattle.commands.WoolBattleCommand
+import net.ocejlot.woolbattle.data.PlayerData
+import net.ocejlot.woolbattle.data.PlayerPerksData
+import net.ocejlot.woolbattle.features.DoubleJump
 import net.ocejlot.woolbattle.items.Bow
 import net.ocejlot.woolbattle.items.ShootCrossbowListener
 import net.ocejlot.woolbattle.items.SnowballSwapper
-import net.ocejlot.woolbattle.items.custom.JumpPlatform
-import net.ocejlot.woolbattle.items.custom.SlimePlatform
-import net.ocejlot.woolbattle.items.custom.WoolCapsule
-import net.ocejlot.woolbattle.items.custom.WoolPlatform
+import net.ocejlot.woolbattle.items.custom.*
 import net.ocejlot.woolbattle.mapmenager.GameStart
 import net.ocejlot.woolbattle.mechanics.*
 import org.bukkit.Bukkit
@@ -21,13 +21,16 @@ import java.util.*
 
 lateinit var plugin : Plugin
 var wbDebugger = hashMapOf<UUID, Boolean>()
+
 var playerPlacedBlockList = mutableListOf<Location>()
 var generatorBlockList = mutableListOf<Location>()
-var woolState = hashMapOf<Location, Boolean>()
-var slimeBlocks = mutableListOf<Location>()
-var woolColor = hashMapOf<UUID, Material>()
-var arrows = mutableListOf<Projectile>()
 
+var woolState = hashMapOf<Location, Boolean>()
+
+var slimeBlocks = mutableListOf<Location>()
+
+var playerData = hashMapOf<UUID, PlayerData>()
+var playerPerksData = hashMapOf<UUID, PlayerPerksData>()
 
 class MainWoolBattle : JavaPlugin() {
     override fun onEnable() {
@@ -60,5 +63,7 @@ class MainWoolBattle : JavaPlugin() {
         plManager.registerEvents(GameStart(), plugin)
         plManager.registerEvents(ImmuneFixes(), plugin)
         plManager.registerEvents(SnowballSwapper(), plugin)
+        plManager.registerEvents(DoubleJump(), plugin)
+        plManager.registerEvents(KitPickerItem(), plugin)
     }
 }
