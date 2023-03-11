@@ -1,7 +1,7 @@
 package net.ocejlot.woolbattle.commands
 
 import net.kyori.adventure.text.minimessage.MiniMessage
-import net.ocejlot.woolbattle.mapmenager.GameStart
+import net.ocejlot.woolbattle.mapmenager.GameManager
 import net.ocejlot.woolbattle.util.ItemStorage
 import net.ocejlot.woolbattle.wbDebugger
 import org.bukkit.command.Command
@@ -82,7 +82,7 @@ class WoolBattleCommand: CommandExecutor, TabCompleter {
 
         }else if(args[0] == "start"){
             sender.sendMessage("started")
-            GameStart().start()
+            GameManager().start()
         }
 
 

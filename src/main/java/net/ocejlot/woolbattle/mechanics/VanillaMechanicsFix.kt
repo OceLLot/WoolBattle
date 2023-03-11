@@ -2,19 +2,29 @@ package net.ocejlot.woolbattle.mechanics
 
 import net.ocejlot.woolbattle.util.IsWool
 import net.ocejlot.woolbattle.wbDebugger
+import org.bukkit.entity.Endermite
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause
-import org.bukkit.event.entity.FoodLevelChangeEvent
+import org.bukkit.event.entity.EntitySpawnEvent
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.player.PlayerDropItemEvent
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerSwapHandItemsEvent
 
-class ImmuneFixes: Listener {
+class VanillaMechanicsFix: Listener {
+
+    @EventHandler
+    fun onEndermiteSpawn(event: EntitySpawnEvent){
+        val endermite = event.entity
+
+        if(endermite !is Endermite)return
+
+        event.isCancelled = true
+    }
 
     @EventHandler
     fun onFallDamage(event: EntityDamageEvent){
@@ -64,10 +74,16 @@ class ImmuneFixes: Listener {
         val player = event.entity
 
         if(player !is Player)return
-        if(event.cause == DamageCause.FALL)return
-        if(event.cause == DamageCause.VOID)return
+        if(event.cause == DamageCause.FALL ||
+                event.cause == DamageCause.VOID ||
+                event.cause == DamageCause.ENTITY_ATTACK)
+            return
+        if(event.cause == DamageCause.PROJECTILE){
+            event.damage = 0.0
+            return
+        }
 
-        event.damage = 0.0
+        event.isCancelled = true
     }
 
     @EventHandler

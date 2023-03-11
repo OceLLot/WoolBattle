@@ -1,9 +1,6 @@
 package net.ocejlot.woolbattle.mechanics
 
-import net.ocejlot.woolbattle.playerPlacedBlockList
-import net.ocejlot.woolbattle.plugin
 import net.ocejlot.woolbattle.slimeBlocks
-import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.block.Block

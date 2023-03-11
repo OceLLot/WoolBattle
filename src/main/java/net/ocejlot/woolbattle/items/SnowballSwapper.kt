@@ -1,13 +1,9 @@
 package net.ocejlot.woolbattle.items
 
-import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.minimessage.MiniMessage
 import net.ocejlot.woolbattle.features.ItemFeatures
 import net.ocejlot.woolbattle.features.WoolActions
-import net.ocejlot.woolbattle.plugin
 import net.ocejlot.woolbattle.util.ItemAmount
 import net.ocejlot.woolbattle.util.ItemStorage
-import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
@@ -15,11 +11,8 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.Action
 import org.bukkit.event.entity.ProjectileHitEvent
-import org.bukkit.event.entity.ProjectileLaunchEvent
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.inventory.EquipmentSlot
-import org.bukkit.inventory.ItemStack
-import kotlin.random.Random
 
 class SnowballSwapper: Listener {
 

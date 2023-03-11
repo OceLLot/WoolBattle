@@ -1,4 +1,5 @@
 package net.ocejlot.woolbattle.items.custom
+
 import net.ocejlot.woolbattle.features.ItemFeatures
 import net.ocejlot.woolbattle.features.WoolActions
 import net.ocejlot.woolbattle.util.ItemAmount
@@ -9,6 +10,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.block.Action
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.inventory.EquipmentSlot
+import org.bukkit.inventory.ItemStack
 
 class SlimePlatform : Listener{
 
@@ -24,6 +26,12 @@ class SlimePlatform : Listener{
         if(ItemAmount.getPlayerWoolCount(player) < amount)return
 
         val location = player.location.add(0.0, -4.0, 0.0)
+
+        val slot = player.inventory.heldItemSlot
+
+        player.inventory.setItem(slot, ItemStack(Material.AIR))
+
+        ItemFeatures().itemCooldown(player, Material.SLIME_BALL, ItemStorage.slimePlatformItem, 20, slot)
         ItemFeatures().spawnPlatform(location, Material.SLIME_BLOCK)
         WoolActions(player).reduceAmount(16)
     }

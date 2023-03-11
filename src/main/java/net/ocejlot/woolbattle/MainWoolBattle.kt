@@ -2,6 +2,7 @@ package net.ocejlot.woolbattle
 
 import net.ocejlot.woolbattle.items.ThrowEnderPearlListener
 import net.ocejlot.woolbattle.commands.WoolBattleCommand
+import net.ocejlot.woolbattle.data.GameStates
 import net.ocejlot.woolbattle.data.PlayerData
 import net.ocejlot.woolbattle.data.PlayerPerksData
 import net.ocejlot.woolbattle.features.DoubleJump
@@ -9,12 +10,11 @@ import net.ocejlot.woolbattle.items.Bow
 import net.ocejlot.woolbattle.items.ShootCrossbowListener
 import net.ocejlot.woolbattle.items.SnowballSwapper
 import net.ocejlot.woolbattle.items.custom.*
-import net.ocejlot.woolbattle.mapmenager.GameStart
+import net.ocejlot.woolbattle.mapmenager.GameManager
+import net.ocejlot.woolbattle.mapmenager.ResetOnDeath
 import net.ocejlot.woolbattle.mechanics.*
 import org.bukkit.Bukkit
 import org.bukkit.Location
-import org.bukkit.Material
-import org.bukkit.entity.Projectile
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.*
@@ -32,11 +32,16 @@ var slimeBlocks = mutableListOf<Location>()
 var playerData = hashMapOf<UUID, PlayerData>()
 var playerPerksData = hashMapOf<UUID, PlayerPerksData>()
 
+lateinit var gameState: GameStates
+
 class MainWoolBattle : JavaPlugin() {
     override fun onEnable() {
         plugin = this
         registerEvents()
         registerCommands()
+        saveDefaultConfig()
+        gameState = GameStates.LOBBY
+        ResetOnDeath().playerYCoordinate()
         logger.info("WoolBattle loaded")
     }
 
@@ -60,10 +65,11 @@ class MainWoolBattle : JavaPlugin() {
         plManager.registerEvents(ThrowEnderPearlListener(), plugin)
         plManager.registerEvents(ShootCrossbowListener(), plugin)
         plManager.registerEvents(StepOnJumpPlatform(), plugin)
-        plManager.registerEvents(GameStart(), plugin)
-        plManager.registerEvents(ImmuneFixes(), plugin)
+        plManager.registerEvents(GameManager(), plugin)
+        plManager.registerEvents(VanillaMechanicsFix(), plugin)
         plManager.registerEvents(SnowballSwapper(), plugin)
         plManager.registerEvents(DoubleJump(), plugin)
         plManager.registerEvents(KitPickerItem(), plugin)
+        plManager.registerEvents(LastPunched(), plugin)
     }
 }

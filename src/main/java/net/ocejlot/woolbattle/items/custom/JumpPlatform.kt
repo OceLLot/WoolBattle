@@ -1,4 +1,5 @@
 package net.ocejlot.woolbattle.items.custom
+
 import net.ocejlot.woolbattle.features.ItemFeatures
 import net.ocejlot.woolbattle.features.WoolActions
 import net.ocejlot.woolbattle.util.ItemAmount
@@ -24,6 +25,10 @@ class JumpPlatform : Listener{
         if(ItemAmount.getPlayerWoolCount(player) < amount)return
 
         val location = player.location.add(0.0, -6.0, 0.0)
+        val slot = player.inventory.heldItemSlot
+
+        ItemFeatures().itemCooldown(player, Material.AZALEA, ItemStorage.jumpPlatformItem, 30, slot)
+
         ItemFeatures().spawnCrossPlatform(location, Material.SLIME_BLOCK)
         WoolActions(player).reduceAmount(16)
     }

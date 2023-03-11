@@ -1,0 +1,22 @@
+woolbattle:
+  mapmanager:
+    redspawnloc:
+      x: 9.5
+      y: -22.0
+      z: -0.5
+    bluespawnloc:
+      x: -9.5
+      y: -22.0
+      z: -0.5
+    lobbyloc:
+      x: -2.5
+      y: -21.0
+      z: -15.5
+    miny: -50.0
+
+  prices:
+    woolcapsule: 16
+    enderpearl: 8
+    doublejump: 5
+
+  lives: 6

@@ -28,11 +28,14 @@ class WoolCapsule : Listener {
 
         val location = player.location
 
+        event.isCancelled = true
 
         val roundedLocation = Location(player.world, player.location.blockX.toDouble() + 0.5, player.location.blockY.toDouble() + 0.5, player.location.blockZ.toDouble() + 0.5, player.location.yaw, player.location.pitch)
         player.teleport(roundedLocation)
 
+        val slot = player.inventory.heldItemSlot
 
+        ItemFeatures().itemCooldown(player, Material.GRAY_STAINED_GLASS, ItemStorage.woolCapsuleItem, 20, slot)
         ItemFeatures().spawnWoolCapsule(location, playerData[player.uniqueId]!!.woolColor)
         WoolActions(player).reduceAmount(16)
     }

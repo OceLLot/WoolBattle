@@ -25,7 +25,7 @@ object ItemStorage {
         }
     }
 
-    val woolCapsuleItem = ItemStack(Material.WHITE_WOOL).apply {
+    val woolCapsuleItem = ItemStack(Material.WHITE_STAINED_GLASS).apply {
         itemMeta = itemMeta.also { its ->
             its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><blue>Капсула з вовни"))
         }
@@ -44,7 +44,7 @@ object ItemStorage {
         itemMeta = itemMeta.also { its ->
             its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><blue>Чарівний лук"))
             its.isUnbreakable = true
-            its.addEnchant(Enchantment.ARROW_KNOCKBACK, 5, true)
+            its.addEnchant(Enchantment.ARROW_KNOCKBACK, 3, true)
             its.addEnchant(Enchantment.KNOCKBACK, 3, true)
             its.addEnchant(Enchantment.ARROW_INFINITE, 1, true)
         }

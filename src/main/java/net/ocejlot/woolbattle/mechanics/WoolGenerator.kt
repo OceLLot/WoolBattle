@@ -1,5 +1,6 @@
 package net.ocejlot.woolbattle.mechanics
 
+import net.kyori.adventure.text.Component
 import net.ocejlot.woolbattle.features.WoolActions
 import net.ocejlot.woolbattle.generatorBlockList
 import net.ocejlot.woolbattle.playerPlacedBlockList
@@ -30,7 +31,11 @@ class WoolGenerator: Listener {
         val itemAmount = ItemAmount.getPlayerWoolCount(player)
         val stackCount = 3*64
         if (itemAmount < stackCount) {
-            WoolActions(player).addAmount(1)
+            if(itemAmount == 191) {
+                WoolActions(player).addAmount(1)
+            }else{
+                WoolActions(player).addAmount(2)
+            }
         }
 
 

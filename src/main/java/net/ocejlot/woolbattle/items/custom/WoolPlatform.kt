@@ -26,6 +26,10 @@ class WoolPlatform : Listener{
         if(ItemAmount.getPlayerWoolCount(player) < amount)return
 
         val location = player.location.add(0.0, -4.0, 0.0)
+        val slot = player.inventory.heldItemSlot
+
+        ItemFeatures().itemCooldown(player, Material.BLAZE_ROD, ItemStorage.woolRoundPlatformItem, 30, slot)
+
         ItemFeatures().spawnRoundPlatform(location, playerData[player.uniqueId]!!.woolColor)
         WoolActions(player).reduceAmount(16)
     }

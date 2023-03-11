@@ -66,9 +66,9 @@ class ItemFeatures {
     }
     fun spawnWoolCapsule(location: Location, block: Material) {
         location.getWoolCapsuleBlocks().forEach {
-            playerPlacedBlockList.add(it.block.location)
             if(it.block.type == Material.AIR) {
                 it.block.type = block
+                playerPlacedBlockList.add(it.block.location)
             }
         }
     }
@@ -104,29 +104,26 @@ class ItemFeatures {
         val inventory = player.inventory
         var count = time
 
+
+
         var taskId = Random.nextInt()
         taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, {
             if(count <= 0) {
                 //Що робити по завершенню таймера
                 inventory.setItem(slot, resultItem)
 
-
-
                 Bukkit.getScheduler().cancelTask(taskId)
                 return@scheduleSyncRepeatingTask
             }
             //Що робити кожен раз, до тих під доки таймер не вимкнеться
-
             val cdItem = ItemStack(material, count).apply {
                 itemMeta = itemMeta.also { its ->
                     its.displayName(MiniMessage.miniMessage().deserialize("<italic:false><red>Перезарядка"))
                 }
             }
-
             inventory.setItem(slot, cdItem)
 
             count--
-        },20,20)
-
+        },0,20)
     }
 }

@@ -13,7 +13,7 @@ class ShootCrossbowListener : Listener {
     @EventHandler
     fun onArrowShoot(event: EntityShootBowEvent) {
         val player = event.entity
-        if (player !is Player || event.bow?.type != Material.CROSSBOW)return
+        if (player !is Player || event.bow?.type != Material.CROSSBOW) return
 
         val amount = 28
         if (ItemAmount.getPlayerWoolCount(player) < amount) {

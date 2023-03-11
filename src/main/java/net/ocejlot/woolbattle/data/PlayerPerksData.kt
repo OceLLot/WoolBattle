@@ -5,5 +5,6 @@ import org.bukkit.inventory.ItemStack
 
 data class PlayerPerksData(
         var perk1: ItemStack = ItemStorage.woolCapsuleItem,
-        var perk2: ItemStack = ItemStorage.woolRoundPlatformItem
+        var perk2: ItemStack = ItemStorage.woolRoundPlatformItem,
+        var pickedSlot: Int = 0
 )

@@ -5,6 +5,7 @@ import net.ocejlot.woolbattle.playerPerksData
 import net.ocejlot.woolbattle.util.ItemStorage
 import org.bukkit.Bukkit
 import org.bukkit.Material
+import org.bukkit.Sound
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -15,11 +16,9 @@ import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
 
-
 class KitPickerItem: Listener {
     private val menuName = "Вибрати перк"
     private val pickSlotMenuName = "Вибрати слот"
-    private var pickedSlot: Int? = null
 
     @EventHandler
     fun onRightClick(event: PlayerInteractEvent){
@@ -101,19 +100,12 @@ class KitPickerItem: Listener {
         event.isCancelled = true
 
         when(event.slot){
-            0 -> {       //First button
-                player.sendMessage("1")
-                pickedSlot = event.slot
+            0, 1 -> {
+                playerPerksData[player.uniqueId]!!.pickedSlot = event.slot
                 player.openInventory(menu(player))
             }
-            1 -> {      //Second button
-                player.sendMessage("2")
-                pickedSlot = event.slot
-                player.openInventory(menu(player))
-            }
-            2 -> {      //Third button
+            2 -> {
                 player.sendMessage("3")
-                pickedSlot = event.slot
             }
             else -> {}
         }
@@ -131,43 +123,14 @@ class KitPickerItem: Listener {
         event.isCancelled = true
 
         when(event.slot){
-            0 -> {       //First button
-                player.sendMessage("1")
-                if(pickedSlot == 1) {
+            0, 1, 2, 3, 4 -> {
+                player.inventory.close()
+                player.playSound(player, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1F, 1F)
+
+                val pickedSlot = playerPerksData[player.uniqueId]!!.pickedSlot
+                if (pickedSlot == 0) {
                     playerPerksData[player.uniqueId]!!.perk1 = event.currentItem!!
-                }else{
-                    playerPerksData[player.uniqueId]!!.perk2 = event.currentItem!!
-                }
-            }
-            1 -> {      //Second button
-                player.sendMessage("2")
-                if(pickedSlot == 1) {
-                    playerPerksData[player.uniqueId]!!.perk1 = event.currentItem!!
-                }else{
-                    playerPerksData[player.uniqueId]!!.perk2 = event.currentItem!!
-                }
-            }
-            2 -> {      //Third button
-                player.sendMessage("3")
-                if(pickedSlot == 1) {
-                    playerPerksData[player.uniqueId]!!.perk1 = event.currentItem!!
-                }else{
-                    playerPerksData[player.uniqueId]!!.perk2 = event.currentItem!!
-                }
-            }
-            3 -> {       //Forth button
-                player.sendMessage("4")
-                if(pickedSlot == 1) {
-                    playerPerksData[player.uniqueId]!!.perk1 = event.currentItem!!
-                }else{
-                    playerPerksData[player.uniqueId]!!.perk2 = event.currentItem!!
-                }
-            }
-            4 -> {       //Forth button
-                player.sendMessage("5")
-                if(pickedSlot == 1) {
-                    playerPerksData[player.uniqueId]!!.perk1 = event.currentItem!!
-                }else{
+                } else if (pickedSlot == 1) {
                     playerPerksData[player.uniqueId]!!.perk2 = event.currentItem!!
                 }
             }
